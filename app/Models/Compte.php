@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Compte extends Model
 {
-    protected $fillable = ['numero_compte', 'solde', 'type_compte', 'client_id'];
+    protected $fillable = ['numero_compte', 'solde', 'type_compte', 'client_id', 'devise', 'actif'];
 
     // Un compte appartient à un seul client
     public function client()

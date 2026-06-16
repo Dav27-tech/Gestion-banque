@@ -25,6 +25,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/dashboard', [\App\Http\Controllers\Admin\AdminDashboardController::class, 'index'])->name('admin.dashboard');
     Route::get('/admin/users', [\App\Http\Controllers\Admin\UserController::class, 'index'])->name('admin.users.index');
     Route::post('/admin/users', [\App\Http\Controllers\Admin\UserController::class, 'store'])->name('admin.users.store');
+    // Nouvelles routes pour la gestion des clients
+    Route::get('/admin/clients', [\App\Http\Controllers\Admin\ClientController::class, 'index'])->name('admin.clients.index');
+    Route::post('/admin/clients', [\App\Http\Controllers\Admin\ClientController::class, 'store'])->name('admin.clients.store');
+    // Nouvelles routes pour la gestion des comptes bancaires
+    Route::get('/admin/comptes', [\App\Http\Controllers\Admin\CompteController::class, 'index'])->name('admin.comptes.index');
+    Route::post('/admin/comptes', [\App\Http\Controllers\Admin\CompteController::class, 'store'])->name('admin.comptes.store');
 });
 
     // Section réservée au Caissier

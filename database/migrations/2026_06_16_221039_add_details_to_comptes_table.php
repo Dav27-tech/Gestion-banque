@@ -11,13 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('clients', function (Blueprint $table) {
-            $table->id();
-            $table->string('nom');
-            $table->string('prenom');
-            $table->string('telephone')->unique();
-            $table->timestamps();
-    });
+        Schema::table('comptes', function (Blueprint $table) {
+            $table->string('devise')->default('USD')->after('solde');
+            $table->boolean('actif')->default(true)->after('type_compte');
+        });
     }
 
     /**
@@ -25,6 +22,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('clients');
+        Schema::table('comptes', function (Blueprint $table) {
+            $table->dropColumn(['devise', 'actif']);
+        });
     }
 };

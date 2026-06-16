@@ -11,10 +11,13 @@ createInertiaApp({
         resolvePageComponent(
             `./Pages/${name}.jsx`,
             import.meta.glob('./Pages/**/*.jsx'),
-        ), // ⚠️ Vérifie l'extension .jsx ici
+        ),
     setup({ el, App, props }) {
-        const root = createRoot(el);
-        root.render(<App {...props} />);
+        // ⚠️ FIX CRITICAL: On vérifie si l'élément DOM existe avant de faire le createRoot
+        if (el) {
+            const root = createRoot(el);
+            root.render(<App {...props} />);
+        }
     },
     progress: {
         color: '#4B5563',

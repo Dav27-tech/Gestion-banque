@@ -1,0 +1,31 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "@/*": ["resources/js/*"],
+            "@components/*": ["resources/js/components/*"],
+            "@pages/*": ["resources/js/pages/*"],
+            "@hooks/*": ["resources/js/hooks/*"],
+            "@context/*": ["resources/js/context/*"],
+            "@lib/*": ["resources/js/lib/*"],
+            "@actions/*": ["resources/js/actions/*"],
+            "@layouts/*": ["resources/js/layouts/*"],
+            "@types/*": ["resources/js/types/*"]
+        },
+        "target": "ES2020",
+        "useDefineForClassFields": true,
+        "lib": ["ES2020", "DOM", "DOM.Iterable"],
+        "module": "ESNext",
+        "skipLibCheck": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "forceConsistentCasingInFileNames": true,
+        "noImplicitAny": false,
+        "strict": false,
+        "resolveJsonModule": true,
+        "moduleResolution": "bundler",
+        "isolatedModules": true
+    },
+    "include": ["resources/js"],
+    "references": [{ "path": "./tsconfig.node.json" }]
+}

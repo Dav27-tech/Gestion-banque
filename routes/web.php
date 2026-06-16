@@ -31,6 +31,9 @@ Route::middleware(['auth'])->group(function () {
     // Nouvelles routes pour la gestion des comptes bancaires
     Route::get('/admin/comptes', [\App\Http\Controllers\Admin\CompteController::class, 'index'])->name('admin.comptes.index');
     Route::post('/admin/comptes', [\App\Http\Controllers\Admin\CompteController::class, 'store'])->name('admin.comptes.store');
+    // Nouvelles routes pour le guichet des opérations
+    Route::get('/admin/transactions', [\App\Http\Controllers\Admin\TransactionController::class, 'index'])->name('admin.transactions.index');
+    Route::post('/admin/transactions', [\App\Http\Controllers\Admin\TransactionController::class, 'store'])->name('admin.transactions.store');
 });
 
     // Section réservée au Caissier

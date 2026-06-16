@@ -16,7 +16,11 @@ class AdminSeeder extends Seeder
     {
         $roleAdmin = Role::firstOrCreate(['nom' => 'admin']);
 
-        $motDePasse = env(['ADMIN_PASSWORD'], "122345678");
+        Role::firstOrCreate(['nom' => 'caissier']);
+        Role::firstOrCreate(['nom' => 'gestionnaire']);
+        Role::firstOrCreate(['nom' => 'auditeur']);
+
+        $motDePasse = env('ADMIN_PASSWORD', "122345678");
 
         User::updateOrCreate(
             ['email' => 'amanimusafiri2007@gmail.com'],

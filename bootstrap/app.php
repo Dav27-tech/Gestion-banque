@@ -23,6 +23,12 @@ return Application::configure(basePath: dirname(__DIR__))
             AddLinkHeadersForPreloadedAssets::class,
         ]);
     })
+    ->withMiddleware(function (Middleware $middleware) {
+        // On donne l'alias 'role' à notre fichier de vérification
+        $middleware->alias([
+            'role' => \App\Http\Middleware\VerificationRole::class,
+        ]);
+    })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(
             fn (Request $request) => $request->is('api/*'),

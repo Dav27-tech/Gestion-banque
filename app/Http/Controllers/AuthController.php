@@ -2,54 +2,56 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller as BaseController;
 use Illuminate\Http\Request;
-use App\Models\User;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
+use Inertia\Inertia;
 
-class AuthController extends Controller
+class AuthController extends BaseController
 {
+    // Afficher la page de connexion via Inertia
+    public function showLogin()
+    {
+        return Inertia::render('Auth/Login');
+    }
+
+    // Gérer la tentative de connexion
     public function login(Request $request)
     {
-        // 1. Validation des données reçues
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
         ]);
 
-        // 2. Chercher l'utilisateur avec son rôle
-        $user = User::where('email', $request->email)->with('role')->first();
+        // Tentative de connexion via les sessions standard de Laravel
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
 
-        // 3. Vérifier si l'utilisateur existe et si le mot de passe est correct
-        if (! $user || ! Hash::check($request->password, $user->password)) {
-            return response()->json([
-                'message' => 'Identifiants incorrects.'
-            ], 401);
+            // Redirection dynamique selon le rôle de l'utilisateur connecté
+            $role = Auth::user()->role->nom;
+
+            return match ($role) {
+                'admin' => redirect()->intended('/admin/dashboard'),
+                'caissier' => redirect()->intended('/caissier/dashboard'),
+                'gestionnaire' => redirect()->intended('/gestionnaire/dashboard'),
+                'auditeur' => redirect()->intended('/auditeur/dashboard'),
+                default => redirect('/'),
+            };
         }
 
-        // 4. Créer le token de session avec Laravel Sanctum
-        $token = $user->createToken('auth_token')->plainTextToken;
-
-        // 5. Renvoyer la réponse à React (L'utilisateur, son rôle et le token)
-        return response()->json([
-            'access_token' => $token,
-            'token_type' => 'Bearer',
-            'user' => [
-                'id' => $user->id,
-                'name' => $user->name,
-                'email' => $user->email,
-                'role' => $user->role->nom // Ex: 'admin', 'caissier'...
-            ]
+        throw ValidationException::withMessages([
+            'email' => 'Identifiants incorrects.',
         ]);
     }
 
+    // Déconnexion
     public function logout(Request $request)
     {
-        // Supprimer le token actuel pour déconnecter l'utilisateur
-        $request->user()->currentAccessToken()->delete();
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
 
-        return response()->json([
-            'message' => 'Déconnexion réussie.'
-        ]);
+        return redirect('/login');
     }
 }

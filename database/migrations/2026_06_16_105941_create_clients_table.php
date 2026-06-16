@@ -11,7 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-
+        Schema::create('clients', function (Blueprint $table) {
+            $table->id();
+            $table->string('nom');
+            $table->string('prenom');
+            $table->string('telephone')->unique();
+            $table->timestamps();
+        });
     }
 
     /**
@@ -19,7 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cache');
-        Schema::dropIfExists('cache_locks');
+        Schema::dropIfExists('clients');
     }
 };

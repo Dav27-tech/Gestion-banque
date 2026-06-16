@@ -11,7 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-
+        Schema::create('roles', function (Blueprint $table) {
+            $table->id();
+            $table->string('nom')->unique(); // admin, caissier, gestionnaire, auditeur
+            $table->timestamps();
+        });
     }
 
     /**
@@ -19,7 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cache');
-        Schema::dropIfExists('cache_locks');
+        Schema::dropIfExists('roles');
     }
 };

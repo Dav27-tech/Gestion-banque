@@ -1,8 +1,17 @@
 import React from 'react';
 import { Link, usePage } from '@inertiajs/react';
 
-export default function AdminLayout({ children }) {
+const navLinkStyle = {
+    padding: '8px 10px',
+    borderRadius: 6,
+    color: '#111827',
+    textDecoration: 'none',
+};
+
+export default function CashierLayout({ children }) {
     const auth = usePage().props.auth;
+    const logoutHref =
+        typeof route !== 'undefined' ? route('logout') : '/logout';
 
     return (
         <div
@@ -21,8 +30,8 @@ export default function AdminLayout({ children }) {
                 }}
             >
                 <div style={{ marginBottom: 18 }}>
-                    <h3 style={{ margin: 0, fontSize: 18, color: '#111827' }}>
-                        Administration
+                    <h3 style={{ margin: 0, fontSize: 18, color: '#2563eb' }}>
+                        Caissier
                     </h3>
                     <p
                         style={{
@@ -31,7 +40,7 @@ export default function AdminLayout({ children }) {
                             fontSize: 13,
                         }}
                     >
-                        Espace Admin
+                        Guichet des opérations
                     </p>
                 </div>
 
@@ -39,26 +48,14 @@ export default function AdminLayout({ children }) {
                     style={{ display: 'flex', flexDirection: 'column', gap: 8 }}
                 >
                     <Link
-                        href="/admin/dashboard"
-                        style={{
-                            padding: '8px 10px',
-                            borderRadius: 6,
-                            color: '#111827',
-                            textDecoration: 'none',
-                        }}
+                        href={
+                            typeof route !== 'undefined'
+                                ? route('caissier.transactions.index')
+                                : '/caissier/transactions'
+                        }
+                        style={navLinkStyle}
                     >
-                        Dashboard
-                    </Link>
-                    <Link
-                        href="/admin/users"
-                        style={{
-                            padding: '8px 10px',
-                            borderRadius: 6,
-                            color: '#111827',
-                            textDecoration: 'none',
-                        }}
-                    >
-                        Utilisateurs
+                        Transactions
                     </Link>
                 </nav>
 
@@ -69,7 +66,7 @@ export default function AdminLayout({ children }) {
                     <div
                         style={{
                             fontWeight: 700,
-                            color: '#111827',
+                            color: '#2563eb',
                             marginTop: 6,
                         }}
                     >
@@ -79,11 +76,7 @@ export default function AdminLayout({ children }) {
 
                 <div style={{ marginTop: 18 }}>
                     <Link
-                        href={
-                            typeof route !== 'undefined'
-                                ? route('logout')
-                                : '/logout'
-                        }
+                        href={logoutHref}
                         method="post"
                         as="button"
                         style={{

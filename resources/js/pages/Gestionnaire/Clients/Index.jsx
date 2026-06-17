@@ -1,8 +1,13 @@
 import React from 'react';
 import { usePage, useForm, Head, Link } from '@inertiajs/react';
-import AdminLayout from '../../../Layouts/AdminLayout';
+import { useRoleLayout } from '../../../layouts/useRoleLayout';
+import ManagerLayout from '../../../layouts/ManagerLayout';
 
 export default function Index() {
+    const Layout = ManagerLayout;
+    const { auth } = usePage().props;
+
+    console.log(usePage().props);
     const { clients = [] } = usePage().props;
 
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -23,7 +28,7 @@ export default function Index() {
     };
 
     return (
-        <AdminLayout>
+        <Layout>
             <div
                 style={{
                     padding: '30px',
@@ -461,6 +466,6 @@ export default function Index() {
                     </div>
                 </div>
             </div>
-        </AdminLayout>
+        </Layout>
     );
 }

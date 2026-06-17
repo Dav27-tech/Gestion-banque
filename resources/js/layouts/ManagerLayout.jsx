@@ -1,15 +1,24 @@
 import React from 'react';
 import { Link, usePage } from '@inertiajs/react';
 
-export default function AdminLayout({ children }) {
+const navLinkStyle = {
+    padding: '8px 10px',
+    borderRadius: 6,
+    color: '#111827',
+    textDecoration: 'none',
+};
+
+export default function ManagerLayout({ children }) {
     const auth = usePage().props.auth;
+    const logoutHref =
+        typeof route !== 'undefined' ? route('logout') : '/logout';
 
     return (
         <div
             style={{
                 display: 'flex',
                 minHeight: '100vh',
-                background: '#f9fafb',
+                background: '#f8fafc',
             }}
         >
             <aside
@@ -21,8 +30,8 @@ export default function AdminLayout({ children }) {
                 }}
             >
                 <div style={{ marginBottom: 18 }}>
-                    <h3 style={{ margin: 0, fontSize: 18, color: '#111827' }}>
-                        Administration
+                    <h3 style={{ margin: 0, fontSize: 18, color: '#0f766e' }}>
+                        Gestionnaire
                     </h3>
                     <p
                         style={{
@@ -31,7 +40,7 @@ export default function AdminLayout({ children }) {
                             fontSize: 13,
                         }}
                     >
-                        Espace Admin
+                        Espace Manager
                     </p>
                 </div>
 
@@ -39,26 +48,34 @@ export default function AdminLayout({ children }) {
                     style={{ display: 'flex', flexDirection: 'column', gap: 8 }}
                 >
                     <Link
-                        href="/admin/dashboard"
-                        style={{
-                            padding: '8px 10px',
-                            borderRadius: 6,
-                            color: '#111827',
-                            textDecoration: 'none',
-                        }}
+                        href={
+                            typeof route !== 'undefined'
+                                ? route('gestionnaire.dashboard')
+                                : '/gestionnaire/dashboard'
+                        }
+                        style={navLinkStyle}
                     >
-                        Dashboard
+                        Dashboard Manager
                     </Link>
                     <Link
-                        href="/admin/users"
-                        style={{
-                            padding: '8px 10px',
-                            borderRadius: 6,
-                            color: '#111827',
-                            textDecoration: 'none',
-                        }}
+                        href={
+                            typeof route !== 'undefined'
+                                ? route('gestionnaire.clients.index')
+                                : '/gestionnaire/clients'
+                        }
+                        style={navLinkStyle}
                     >
-                        Utilisateurs
+                        Clients
+                    </Link>
+                    <Link
+                        href={
+                            typeof route !== 'undefined'
+                                ? route('gestionnaire.comptes.index')
+                                : '/gestionnaire/comptes'
+                        }
+                        style={navLinkStyle}
+                    >
+                        Comptes
                     </Link>
                 </nav>
 
@@ -69,7 +86,7 @@ export default function AdminLayout({ children }) {
                     <div
                         style={{
                             fontWeight: 700,
-                            color: '#111827',
+                            color: '#0f766e',
                             marginTop: 6,
                         }}
                     >
@@ -79,11 +96,7 @@ export default function AdminLayout({ children }) {
 
                 <div style={{ marginTop: 18 }}>
                     <Link
-                        href={
-                            typeof route !== 'undefined'
-                                ? route('logout')
-                                : '/logout'
-                        }
+                        href={logoutHref}
                         method="post"
                         as="button"
                         style={{

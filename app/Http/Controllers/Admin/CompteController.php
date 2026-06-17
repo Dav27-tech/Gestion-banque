@@ -12,14 +12,12 @@ class CompteController extends Controller
 {
     // 1. Afficher la liste des comptes avec leurs clients et le formulaire de création
     public function index()
-    {
-        return Inertia::render('Admin/Comptes/Index', [
-            // On récupère les comptes en y joignant les informations du client associé
-            'comptes' => Compte::with('client')->latest()->get(),
-            // On récupère la liste des clients pour remplir le sélecteur du formulaire
-            'clients' => Client::select('id', 'nom', 'prenom', 'telephone')->get()
-        ]);
-    }
+{
+    return Inertia::render('Gestionnaire/Comptes/Index', [
+        'comptes' => Compte::with('client')->latest()->get(),
+        'clients' => Client::select('id', 'nom', 'prenom', 'telephone')->get()
+    ]);
+}
 
     // 2. Enregistrer un nouveau compte bancaire
     public function store(Request $request)

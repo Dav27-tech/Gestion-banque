@@ -15,7 +15,7 @@ class TransactionController extends Controller
     // 1. Afficher l'historique et le formulaire d'opération
     public function index()
     {
-        return Inertia::render('Admin/Transactions/Index', [
+        return Inertia::render('Caissier/Transactions/Index', [
             'transactions' => Transaction::with(['compte.client', 'compteDestination.client', 'caissier'])->latest()->get(),
             'comptes' => Compte::with('client')->where('actif', true)->get() // Uniquement les comptes actifs
         ]);

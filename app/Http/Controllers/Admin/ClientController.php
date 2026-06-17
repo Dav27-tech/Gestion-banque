@@ -11,11 +11,11 @@ class ClientController extends Controller
 {
     // 1. Afficher la liste des clients et le formulaire d'ajout
     public function index()
-    {
-        return Inertia::render('Admin/Clients/Index', [
-            'clients' => Client::latest()->get()
-        ]);
-    }
+{
+    return Inertia::render('Gestionnaire/Clients/Index', [
+        'clients' => Client::latest()->get()
+    ]);
+}
 
     // 2. Enregistrer un nouveau client dans la base de données
     public function store(Request $request)

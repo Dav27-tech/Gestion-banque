@@ -1,8 +1,10 @@
 import React from 'react';
 import { usePage, useForm, Head, Link } from '@inertiajs/react';
-import AdminLayout from '../../../Layouts/AdminLayout';
+import { useRoleLayout } from '../../../layouts/useRoleLayout';
+import ManagerLayout from '../../../layouts/ManagerLayout';
 
 export default function Index() {
+    const Layout = ManagerLayout;
     // 1. Récupération des données partagées par le CompteController
     const { comptes, clients } = usePage().props;
 
@@ -16,13 +18,17 @@ export default function Index() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        post('/admin/comptes', {
+        const url =
+            typeof route !== 'undefined'
+                ? route('gestionnaire.comptes.store')
+                : '/gestionnaire/comptes';
+        post(url, {
             onSuccess: () => reset('client_id', 'solde'), // Réinitialise le client et le solde après création
         });
     };
 
     return (
-        <AdminLayout>
+        <Layout>
             <div
                 style={{
                     padding: '30px',
@@ -476,6 +482,6 @@ export default function Index() {
                     </div>
                 </div>
             </div>
-        </AdminLayout>
+        </Layout>
     );
 }

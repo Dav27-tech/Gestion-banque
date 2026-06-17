@@ -31,6 +31,9 @@ export default function Login({ intendedRole }) {
         role_attendu: roleActuel,
     });
 
+    // message d'alerte contrôlé côté client (rempli par onError de useForm.post)
+    const [alertMessage, setAlertMessage] = useState(null);
+
     useEffect(() => {
         return () => {
             reset('password');
@@ -40,15 +43,23 @@ export default function Login({ intendedRole }) {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if (typeof window !== 'undefined' && window.route) {
-            post(window.route('login'));
-        } else {
-            post('/login');
-        }
+        const url =
+            typeof window !== 'undefined' && window.route
+                ? window.route('login.attempt')
+                : '/login';
+
+        post(url, {
+            onError: (errs) => {
+                const first = Object.values(errs)[0] ?? null;
+                setAlertMessage(Array.isArray(first) ? first[0] : first);
+            },
+            onSuccess: () => setAlertMessage(null),
+        });
     };
 
     // Afficher une alerte simple quand il y a une erreur d'authentification
-    const firstErrorMessage = Object.values(errors)[0] ?? null;
+    const firstErrorMessage =
+        alertMessage || (Object.values(errors)[0] ?? null);
 
     // Couleurs de thèmes mises à jour pour un look plus Fintech/Moderne
     const thèmes = {
@@ -84,6 +95,23 @@ export default function Login({ intendedRole }) {
                 </div>
 
                 <form onSubmit={handleSubmit}>
+                    {firstErrorMessage && (
+                        <div
+                            className="bank-alert"
+                            role="alert"
+                            style={{
+                                backgroundColor: '#fff1f2',
+                                color: '#991b1b',
+                                padding: '10px 12px',
+                                borderRadius: '8px',
+                                border: '1px solid #fecaca',
+                                marginBottom: '12px',
+                                fontWeight: 600,
+                            }}
+                        >
+                            {firstErrorMessage}
+                        </div>
+                    )}
                     {/* Champ Adresse Email */}
                     <div className="bank-form-group">
                         <label className="bank-label" htmlFor="email">

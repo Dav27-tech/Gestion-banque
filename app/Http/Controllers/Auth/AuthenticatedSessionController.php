@@ -34,10 +34,11 @@ class AuthenticatedSessionController extends Controller
             
             $user = Auth::user();
 
-            // 3. BARRIÈRE DE SÉCURITÉ : Autoriser l'admin partout, vérifier les rôles manquants
+            // 3. BARRIÈRE DE SÉCURITÉ : Le rôle réel doit correspondre au portail demandé
+            //    Les administrateurs ne peuvent se connecter que via le portail 'admin'.
             $userRole = $user->role ? $user->role->nom : null;
 
-            if ($userRole !== 'admin' && $userRole !== $credentials['role_attendu']) {
+            if ($userRole !== $credentials['role_attendu']) {
                 // Déconnexion immédiate si le rôle ne correspond pas au poste demandé
                 Auth::logout();
                 $request->session()->invalidate();
@@ -48,16 +49,11 @@ class AuthenticatedSessionController extends Controller
                 ]);
             }
 
-            // 4. AIGUILLAGE CHIRURGICAL (Redirection par nom de route pour éviter le bug 404)
-            // Si l'utilisateur est admin, on l'autorise à accéder au portail demandé
-            if ($userRole === 'admin') {
-                $intended = $credentials['role_attendu'];
-                $route = $intended === 'caissier' ? 'caissier.transactions.index' : ($intended . '.dashboard');
-                return redirect()->route($route);
-            }
-
-            // Sinon, redirection normale selon le rôle de l'utilisateur
+            // 4. Redirection selon le rôle réel
             switch ($userRole) {
+                case 'admin':
+                    return redirect()->route('admin.dashboard');
+
                 case 'gestionnaire':
                     return redirect()->route('gestionnaire.dashboard');
 

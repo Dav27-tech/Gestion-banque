@@ -12,7 +12,7 @@ use Inertia\Response;
 class AuthenticatedSessionController extends Controller
 {
     /**
-     * Gérer la tentative d'authentification unique et multi-poste
+     * Traiter la tentative de connexion unique et multi-poste
      */
     public function store(Request $request): RedirectResponse
     {
@@ -23,22 +23,21 @@ class AuthenticatedSessionController extends Controller
             'role_attendu' => 'required|string|in:admin,gestionnaire,caissier,auditeur',
         ]);
 
-        // 2. Tentative de connexion via les identifiants classiques (Email / Mot de passe)
+        // 2. Tentative de connexion (Email + Mot de passe)
         if (Auth::attempt(
             ['email' => $credentials['email'], 'password' => $credentials['password']], 
             $request->boolean('remember')
         )) {
             
-            // Régénération de la session pour des raisons de sécurité (anti-fixation de session)
+            // Régénération de la session pour bloquer les attaques de fixation de session
             $request->session()->regenerate();
             
             $user = Auth::user();
 
-            // 3. BARRIÈRE DE SÉCURITÉ CRUCIALE : L'utilisateur a-t-il le rôle requis pour CETTE URL ?
-            // On vérifie la relation "role" déclarée dans ton modèle User (ex: $user->role->nom)
+            // 3. BARRIÈRE DE SÉCURITÉ : Vérification du rôle par rapport à l'URL utilisée
             if (!$user->role || $user->role->nom !== $credentials['role_attendu']) {
                 
-                // Si le rôle ne correspond pas, on le déconnecte de force immédiatement
+                // Déconnexion immédiate si le rôle ne correspond pas au poste demandé
                 Auth::logout();
                 $request->session()->invalidate();
                 $request->session()->regenerateToken();
@@ -48,19 +47,19 @@ class AuthenticatedSessionController extends Controller
                 ]);
             }
 
-            // 4. AIGUILLAGE ET REDIRECTION VERS L'ESPACE DÉDIÉ
+            // 4. AIGUILLAGE CHIRURGICAL (Redirection par nom de route pour éviter le bug 404)
             switch ($user->role->nom) {
                 case 'admin':
-                    return redirect()->intended(route('admin.dashboard'));
+                    return redirect()->route('admin.dashboard');
                 
                 case 'gestionnaire':
-                    return redirect()->intended(route('gestionnaire.dashboard'));
+                    return redirect()->route('gestionnaire.dashboard');
                 
                 case 'caissier':
-                    return redirect()->intended(route('caissier.transactions.index'));
+                    return redirect()->route('caissier.transactions.index');
                 
                 case 'auditeur':
-                    return redirect()->intended(route('auditeur.dashboard'));
+                    return redirect()->route('auditeur.dashboard');
                 
                 default:
                     Auth::logout();
@@ -68,14 +67,14 @@ class AuthenticatedSessionController extends Controller
             }
         }
 
-        // Si les identifiants (email ou mot de passe) sont faux
+        // Si l'email ou le mot de passe est incorrect
         return redirect()->back()->withErrors([
             'email' => 'Ces identifiants ne correspondent pas à nos enregistrements.',
         ]);
     }
 
     /**
-     * Déconnecter l'utilisateur (Valable pour tous les postes)
+     * Déconnecter l'utilisateur et le renvoyer vers son portail d'origine
      */
     public function destroy(Request $request): RedirectResponse
     {
@@ -87,7 +86,7 @@ class AuthenticatedSessionController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        // Redirection intelligente : on le renvoie sur la page de login de son propre poste
+        // Redirection intelligente : renvoie l'utilisateur sur le login de son propre poste
         if ($rolePrecedent && $rolePrecedent !== 'admin') {
             return redirect('/' . $rolePrecedent);
         }

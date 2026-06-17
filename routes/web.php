@@ -19,6 +19,8 @@ Route::get('/gestionnaire', function () { return Inertia::render('Auth/Login', [
 Route::get('/auditeur', function () { return Inertia::render('Auth/Login', ['intendedRole' => 'auditeur']); })->name('login.auditeur');
 // Route POST pour traiter la soumission du formulaire de connexion (session-based)
 Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('login.attempt');
+// Route de déconnexion pour les sessions basées sur le web
+Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
 // ---------------------------------------------------------
 // 2. SÉCURISATION DES ESPACES DE TRAVAIL (ROUTES PRIVÉES)

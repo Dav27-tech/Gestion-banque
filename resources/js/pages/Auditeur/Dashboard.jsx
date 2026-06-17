@@ -41,7 +41,7 @@ export default function Dashboard() {
                             🖨️ Imprimer le Rapport (PDF)
                         </button>
                         <Link 
-                            href={route('logout')} 
+                            href={typeof route !== 'undefined' ? route('logout') : '/logout'} 
                             method="post" 
                             as="button" 
                             style={{ padding: '10px 15px', backgroundColor: '#ef4444', color: '#fff', border: 'none', borderRadius: '6px', cursor: 'pointer' }}

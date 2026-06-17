@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react';
 import { Head, useForm } from '@inertiajs/react';
-// 💡 On importe explicitement le helper route pour éviter le "ReferenceError"
-import { route } from '../../../../vendor/tightenco/ziggy';
 
 export default function Login({ intendedRole }) {
     const roleActuel = intendedRole || 'admin';
@@ -21,8 +19,21 @@ export default function Login({ intendedRole }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Maintenant "route" est bien défini !
-        post(route('login')); 
+        
+        // 💡 SOLUTION : Utiliser window.route() qui est injecté globalement par Laravel/Ziggy
+        if (typeof window !== 'undefined' && window.route) {
+            post(window.route('login'));
+        } else {
+            // Sécurité de secours si l'alias global n'est pas encore instancié
+            post('/login');
+        }
+    };
+
+    const thèmes = {
+        admin: '#1e40af',       
+        gestionnaire: '#0d9488',
+        caissier: '#2563eb',    
+        auditeur: '#4f46e5'     
     };
 
     return (
@@ -31,7 +42,6 @@ export default function Login({ intendedRole }) {
 
             <div style={{ backgroundColor: '#ffffff', padding: '40px', borderRadius: '12px', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)', width: '100%', maxWidth: '400px' }}>
                 
-                {/* Entête dynamique du formulaire */}
                 <div style={{ textAlign: 'center', marginBottom: '30px' }}>
                     <h2 style={{ fontSize: '22px', fontWeight: 'bold', color: '#111827', margin: '0 0 5px 0' }}>Système Bancaire</h2>
                     <span style={{ 

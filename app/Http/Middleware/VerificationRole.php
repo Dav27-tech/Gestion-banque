@@ -19,9 +19,11 @@ class VerificationRole
             return redirect()->route('login');
         }
 
-        // 2. Vérifier si son rôle correspond au rôle requis
-        if ($request->user()->role->nom !== $role) {
-            // Optionnel : Tu peux rediriger vers une page 403 personalisée Inertia
+        // 2. Permettre à l'admin d'accéder partout, gérer les rôles manquants
+        $userRole = $request->user()->role ? $request->user()->role->nom : null;
+
+        // Si pas de rôle ou rôle différent et l'utilisateur n'est pas admin => accès refusé
+        if ($userRole !== 'admin' && $userRole !== $role) {
             abort(403, 'Accès non autorisé à cet espace.');
         }
 

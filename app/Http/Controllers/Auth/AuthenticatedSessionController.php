@@ -34,9 +34,10 @@ class AuthenticatedSessionController extends Controller
             
             $user = Auth::user();
 
-            // 3. BARRIÈRE DE SÉCURITÉ : Vérification du rôle par rapport à l'URL utilisée
-            if (!$user->role || $user->role->nom !== $credentials['role_attendu']) {
-                
+            // 3. BARRIÈRE DE SÉCURITÉ : Autoriser l'admin partout, vérifier les rôles manquants
+            $userRole = $user->role ? $user->role->nom : null;
+
+            if ($userRole !== 'admin' && $userRole !== $credentials['role_attendu']) {
                 // Déconnexion immédiate si le rôle ne correspond pas au poste demandé
                 Auth::logout();
                 $request->session()->invalidate();
@@ -48,19 +49,24 @@ class AuthenticatedSessionController extends Controller
             }
 
             // 4. AIGUILLAGE CHIRURGICAL (Redirection par nom de route pour éviter le bug 404)
-            switch ($user->role->nom) {
-                case 'admin':
-                    return redirect()->route('admin.dashboard');
-                
+            // Si l'utilisateur est admin, on l'autorise à accéder au portail demandé
+            if ($userRole === 'admin') {
+                $intended = $credentials['role_attendu'];
+                $route = $intended === 'caissier' ? 'caissier.transactions.index' : ($intended . '.dashboard');
+                return redirect()->route($route);
+            }
+
+            // Sinon, redirection normale selon le rôle de l'utilisateur
+            switch ($userRole) {
                 case 'gestionnaire':
                     return redirect()->route('gestionnaire.dashboard');
-                
+
                 case 'caissier':
                     return redirect()->route('caissier.transactions.index');
-                
+
                 case 'auditeur':
                     return redirect()->route('auditeur.dashboard');
-                
+
                 default:
                     Auth::logout();
                     return redirect('/');

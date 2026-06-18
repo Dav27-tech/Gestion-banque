@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller as BaseController;
 use App\Models\User;
 // Importe tes autres modèles ici dès qu'ils seront créés (Client, Compte, etc.)
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Auth;
 
 class AdminDashboardController extends BaseController
 {
@@ -21,12 +22,20 @@ class AdminDashboardController extends BaseController
 
         // 2. Envoi des données au composant React existant
         return Inertia::render('Admin/Dashboard', [
+            'auth' => [
+                'user' => [
+                    'id' => Auth::user()?->id,
+                    'name' => Auth::user()?->name,
+                    'email' => Auth::user()?->email,
+                    'role' => Auth::user()?->role?->nom,
+                ]
+            ],
             'stats' => [
                 'utilisateurs' => $totalUtilisateurs,
                 'clients' => $totalClients,
                 'comptes' => $totalComptes,
                 'solde_total' => $soldeTotal,
-            ]
+            ],
         ]);
     }
 }

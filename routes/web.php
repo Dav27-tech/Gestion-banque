@@ -9,6 +9,14 @@ use App\Http\Controllers\Admin\CompteController;
 use App\Http\Controllers\Admin\TransactionController;
 use App\Http\Controllers\Auditeur\AuditeurController;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Auth;
+
+Route::get('/test-auth', function () {
+    return response()->json([
+        'user' => Auth::user(),
+        'check' => Auth::check(),
+    ]);
+});
 
 // ---------------------------------------------------------
 // 1. PORTES D'ENTRÉE CLOISONNÉES (PUBLIQUES)

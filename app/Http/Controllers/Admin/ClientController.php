@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Client;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Auth;
 
 class ClientController extends Controller
 {
@@ -13,6 +14,14 @@ class ClientController extends Controller
     public function index()
 {
     return Inertia::render('Gestionnaire/Clients/Index', [
+        'auth' => [
+            'user' => [
+                'id' => Auth::user()?->id,
+                'name' => Auth::user()?->name,
+                'email' => Auth::user()?->email,
+                'role' => Auth::user()?->role?->nom,
+            ]
+        ],
         'clients' => Client::latest()->get()
     ]);
 }

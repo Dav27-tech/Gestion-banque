@@ -229,36 +229,6 @@ export default function Dashboard() {
                 >
                     Gérer les utilisateurs
                 </Link>
-
-                <Link
-                    href={comptesHref}
-                    className="db-action-btn"
-                    style={{
-                        padding: '10px 14px',
-                        background: '#0d9488',
-                        color: '#fff',
-                        borderRadius: '8px',
-                        textDecoration: 'none',
-                        fontWeight: '600',
-                    }}
-                >
-                    Aller aux comptes (Gestionnaire)
-                </Link>
-
-                <Link
-                    href={transactionsHref}
-                    className="db-action-btn"
-                    style={{
-                        padding: '10px 14px',
-                        background: '#2563eb',
-                        color: '#fff',
-                        borderRadius: '8px',
-                        textDecoration: 'none',
-                        fontWeight: '600',
-                    }}
-                >
-                    Voir les transactions (Caissier)
-                </Link>
             </div>
         </AdminLayout>
     );

@@ -66,6 +66,44 @@ export default function Dashboard() {
                     </div>
                 </div>
             </div>
+
+            <div style={{ display: 'flex', gap: '12px' }}>
+                <Link
+                    href={
+                        typeof route !== 'undefined'
+                            ? route('gestionnaire.clients.index')
+                            : '/gestionnaire/clients'
+                    }
+                    style={{
+                        padding: '10px 14px',
+                        background: '#0d9488',
+                        color: '#fff',
+                        borderRadius: '8px',
+                        textDecoration: 'none',
+                        fontWeight: '600',
+                    }}
+                >
+                    Gérer les clients
+                </Link>
+
+                <Link
+                    href={
+                        typeof route !== 'undefined'
+                            ? route('gestionnaire.comptes.index')
+                            : '/gestionnaire/comptes'
+                    }
+                    style={{
+                        padding: '10px 14px',
+                        background: '#06b6d4',
+                        color: '#fff',
+                        borderRadius: '8px',
+                        textDecoration: 'none',
+                        fontWeight: '600',
+                    }}
+                >
+                    Gérer les comptes
+                </Link>
+            </div>
         </ManagerLayout>
     );
 }

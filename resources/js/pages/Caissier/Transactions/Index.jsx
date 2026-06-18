@@ -1,6 +1,5 @@
 import React from 'react';
 import { usePage, useForm, Head } from '@inertiajs/react';
-import { useRoleLayout } from '../../../layouts/useRoleLayout';
 import CashierLayout from '../../../layouts/CashierLayout';
 
 export default function Index() {

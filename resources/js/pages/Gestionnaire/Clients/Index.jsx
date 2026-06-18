@@ -1,6 +1,5 @@
 import React from 'react';
 import { usePage, useForm, Head, Link } from '@inertiajs/react';
-import { useRoleLayout } from '../../../layouts/useRoleLayout';
 import ManagerLayout from '../../../layouts/ManagerLayout';
 
 export default function Index() {
@@ -62,28 +61,6 @@ export default function Index() {
                             Enregistrez les profils des clients de la banque
                             avant l'ouverture de leurs comptes.
                         </p>
-                    </div>
-
-                    <div>
-                        <Link
-                            href={
-                                typeof route !== 'undefined'
-                                    ? route('logout')
-                                    : '/logout'
-                            }
-                            method="post"
-                            as="button"
-                            style={{
-                                padding: '8px 12px',
-                                background: '#ef4444',
-                                color: '#fff',
-                                borderRadius: '8px',
-                                border: 'none',
-                                cursor: 'pointer',
-                            }}
-                        >
-                            Déconnexion
-                        </Link>
                     </div>
                 </div>
 

@@ -7,6 +7,7 @@ use App\Models\Compte;
 use App\Models\Client;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Auth;
 
 class CompteController extends Controller
 {
@@ -14,6 +15,14 @@ class CompteController extends Controller
     public function index()
 {
     return Inertia::render('Gestionnaire/Comptes/Index', [
+        'auth' => [
+            'user' => [
+                'id' => Auth::user()?->id,
+                'name' => Auth::user()?->name,
+                'email' => Auth::user()?->email,
+                'role' => Auth::user()?->role?->nom,
+            ]
+        ],
         'comptes' => Compte::with('client')->latest()->get(),
         'clients' => Client::select('id', 'nom', 'prenom', 'telephone')->get()
     ]);

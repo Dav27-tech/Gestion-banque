@@ -10,13 +10,7 @@ use App\Http\Controllers\Admin\TransactionController;
 use App\Http\Controllers\Auditeur\AuditeurController;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
-
-Route::get('/test-auth', function () {
-    return response()->json([
-        'user' => Auth::user(),
-        'check' => Auth::check(),
-    ]);
-});
+use App\Http\Controllers\Gestionnaire\GestionnaireController;
 
 // ---------------------------------------------------------
 // 1. PORTES D'ENTRÉE CLOISONNÉES (PUBLIQUES)
@@ -42,7 +36,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 // ESPACE GESTIONNAIRE : Il gère les clients et ouvre les comptes (avec taux d'intérêt)
 Route::middleware(['auth', 'role:gestionnaire'])->group(function () {
-    Route::get('/gestionnaire/dashboard', function () { return Inertia::render('Gestionnaire/Dashboard'); })->name('gestionnaire.dashboard');
+    Route::get(
+        '/gestionnaire/dashboard',
+        [GestionnaireController::class, 'index']
+    )->name('gestionnaire.dashboard');
     Route::get('/gestionnaire/clients', [ClientController::class, 'index'])->name('gestionnaire.clients.index');
     Route::post('/gestionnaire/clients', [ClientController::class, 'store'])->name('gestionnaire.clients.store');
     Route::get('/gestionnaire/comptes', [CompteController::class, 'index'])->name('gestionnaire.comptes.index');

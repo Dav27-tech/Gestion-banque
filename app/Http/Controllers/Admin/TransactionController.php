@@ -16,6 +16,14 @@ class TransactionController extends Controller
     public function index()
     {
         return Inertia::render('Caissier/Transactions/Index', [
+            'auth' => [
+                'user' => [
+                    'id' => Auth::user()?->id,
+                    'name' => Auth::user()?->name,
+                    'email' => Auth::user()?->email,
+                    'role' => Auth::user()?->role?->nom,
+                ]
+            ],
             'transactions' => Transaction::with(['compte.client', 'compteDestination.client', 'caissier'])->latest()->get(),
             'comptes' => Compte::with('client')->where('actif', true)->get() // Uniquement les comptes actifs
         ]);

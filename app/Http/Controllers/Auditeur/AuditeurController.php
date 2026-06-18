@@ -7,6 +7,7 @@ use App\Models\Transaction;
 use App\Models\Compte;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Auth;
 
 class AuditeurController extends Controller
 {
@@ -42,6 +43,14 @@ class AuditeurController extends Controller
 
         // 4. Envoi des données filtrées à la vue React d'Inertia
         return Inertia::render('Auditeur/Dashboard', [
+            'auth' => [
+                'user' => [
+                    'id' => Auth::user()?->id,
+                    'name' => Auth::user()?->name,
+                    'email' => Auth::user()?->email,
+                    'role' => Auth::user()?->role?->nom,
+                ]
+            ],
             'transactions' => $transactions,
             'stats' => [
                 'masse_monetaire_usd' => $totalSoldeUSD,

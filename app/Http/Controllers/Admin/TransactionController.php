@@ -14,21 +14,31 @@ class TransactionController extends Controller
 {
     // 1. Afficher l'historique et le formulaire d'opération
     public function index()
-    {
-        return Inertia::render('Caissier/Transactions/Index', [
-            'auth' => [
-                'user' => [
-                    'id' => Auth::user()?->id,
-                    'name' => Auth::user()?->name,
-                    'email' => Auth::user()?->email,
-                    'role' => Auth::user()?->role?->nom,
-                ]
-            ],
-            'transactions' => Transaction::with(['compte.client', 'compteDestination.client', 'caissier'])->latest()->get(),
-            'comptes' => Compte::with('client')->where('actif', true)->get() // Uniquement les comptes actifs
-        ]);
-    }
+{
+    $transactions = Transaction::with(['compte.client', 'compteDestination.client', 'caissier'])->latest()->get();
 
+    // Calcul dynamique des statistiques pour le guichet
+    $stats = [
+        'total_count'       => $transactions->count(),
+        'total_depots'      => $transactions->where('type', 'depot')->count(),
+        'total_retraits'    => $transactions->where('type', 'retrait')->count(),
+        'total_transferts'  => $transactions->where('type', 'virement')->count(),
+    ];
+
+    return Inertia::render('Caissier/Transactions/Index', [
+        'auth' => [
+            'user' => [
+                'id' => Auth::user()?->id,
+                'name' => Auth::user()?->name,
+                'email' => Auth::user()?->email,
+                'role' => Auth::user()?->role?->nom,
+            ]
+        ],
+        'transactions' => $transactions,
+        'comptes' => Compte::with('client')->where('actif', true)->get(),
+        'stats' => $stats // Ajout indispensable de la variable stats transmise à React
+    ]);
+}
     // 2. Traiter une opération financière (Dépôt, Retrait, Virement)
     public function store(Request $request)
     {

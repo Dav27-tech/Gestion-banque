@@ -6,6 +6,7 @@ import {
     LogOut,
     ShieldCheck,
     Building2,
+    ChevronRight,
 } from 'lucide-react';
 
 export default function AdminLayout({ children }) {
@@ -141,11 +142,30 @@ export default function AdminLayout({ children }) {
                                 }
                             }}
                         >
-                            <LayoutDashboard
-                                size={18}
-                                strokeWidth={isDashboardActive ? 2.2 : 1.8}
-                            />
-                            <span>Dashboard</span>
+                            <div
+                                style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: 12,
+                                    width: '100%',
+                                }}
+                            >
+                                <LayoutDashboard
+                                    size={18}
+                                    strokeWidth={isDashboardActive ? 2.2 : 1.8}
+                                />
+                                <span style={{ flex: 1 }}>Dashboard</span>
+                                <ChevronRight
+                                    size={14}
+                                    style={{
+                                        opacity: isDashboardActive ? 1 : 0.3,
+                                        transform: isDashboardActive
+                                            ? 'translateX(0)'
+                                            : 'translateX(-4px)',
+                                        transition: 'transform 200ms ease',
+                                    }}
+                                />
+                            </div>
                         </Link>
 
                         <Link
@@ -166,11 +186,30 @@ export default function AdminLayout({ children }) {
                                 }
                             }}
                         >
-                            <Users
-                                size={18}
-                                strokeWidth={isUsersActive ? 2.2 : 1.8}
-                            />
-                            <span>Utilisateurs</span>
+                            <div
+                                style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: 12,
+                                    width: '100%',
+                                }}
+                            >
+                                <Users
+                                    size={18}
+                                    strokeWidth={isUsersActive ? 2.2 : 1.8}
+                                />
+                                <span style={{ flex: 1 }}>Utilisateurs</span>
+                                <ChevronRight
+                                    size={14}
+                                    style={{
+                                        opacity: isUsersActive ? 1 : 0.3,
+                                        transform: isUsersActive
+                                            ? 'translateX(0)'
+                                            : 'translateX(-4px)',
+                                        transition: 'transform 200ms ease',
+                                    }}
+                                />
+                            </div>
                         </Link>
                     </nav>
                 </div>

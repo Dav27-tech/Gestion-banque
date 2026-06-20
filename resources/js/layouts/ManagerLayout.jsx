@@ -145,43 +145,6 @@ export default function ManagerLayout({ children }) {
                         }}
                     >
                         <Link
-                            href={dashboardHref}
-                            style={navLinkStyle(isDashboardActive)}
-                            onMouseEnter={(e) => {
-                                if (!isDashboardActive) {
-                                    e.currentTarget.style.backgroundColor =
-                                        '#f0fdfa';
-                                    e.currentTarget.style.color = '#0f766e';
-                                }
-                            }}
-                            onMouseLeave={(e) => {
-                                if (!isDashboardActive) {
-                                    e.currentTarget.style.backgroundColor =
-                                        'transparent';
-                                    e.currentTarget.style.color = '#475569';
-                                }
-                            }}
-                        >
-                            <div
-                                style={{
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    gap: '12px',
-                                }}
-                            >
-                                <LayoutDashboard
-                                    size={18}
-                                    strokeWidth={isDashboardActive ? 2.2 : 1.8}
-                                />
-                                <span>Dashboard Manager</span>
-                            </div>
-                            <ChevronRight
-                                size={14}
-                                style={{ opacity: isDashboardActive ? 1 : 0.3 }}
-                            />
-                        </Link>
-
-                        <Link
                             href={clientsHref}
                             style={navLinkStyle(isClientsActive)}
                             onMouseEnter={(e) => {

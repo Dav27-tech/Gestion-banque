@@ -63,7 +63,7 @@ class AuthenticatedSessionController extends Controller
                     return redirect()->route('admin.dashboard');
 
                 case 'gestionnaire':
-                    return redirect()->route('gestionnaire.dashboard');
+                    return redirect()->route('gestionnaire.clients.index');
 
                 case 'caissier':
                     return redirect()->route('caissier.transactions.index');

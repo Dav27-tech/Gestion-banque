@@ -542,6 +542,26 @@ export default function Index() {
                                 placeholder="david.musafiri@banque.cd"
                                 required
                             />
+                            <span
+                                style={{
+                                    position: 'absolute',
+                                    left: '12px',
+                                    top: '13px',
+                                    color: '#94a3b8',
+                                }}
+                            >
+                                <svg
+                                    width="16"
+                                    height="16"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth="2.5"
+                                >
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                                    <circle cx="12" cy="7" r="4" />
+                                </svg>
+                            </span>
                             {createErrors.email && (
                                 <div
                                     style={{

@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -18,6 +19,14 @@ class UserController extends Controller
     public function index()
     {
         return Inertia::render('Admin/Users/Index', [
+            'auth' => [
+                'user' => [
+                    'id' => Auth::user()?->id,
+                    'name' => Auth::user()?->name,
+                    'email' => Auth::user()?->email,
+                    'role' => Auth::user()?->role?->nom,
+                ]
+            ],
             'users' => User::with('role')->latest()->get(),
             'roles' => Role::all(),
         ]);

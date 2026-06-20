@@ -539,7 +539,7 @@ export default function Index() {
                                 }
                                 style={styles.input}
                                 className="input-field"
-                                placeholder="david@banque.cd"
+                                placeholder="david.musafiri@banque.cd"
                                 required
                             />
                             {createErrors.email && (

@@ -23,6 +23,8 @@ class AuthenticatedSessionController extends Controller
             'role_attendu' => 'required|string|in:admin,gestionnaire,caissier,auditeur',
         ]);
 
+        
+
         // 2. Tentative de connexion (Email + Mot de passe)
         if (Auth::attempt(
             ['email' => $credentials['email'], 'password' => $credentials['password']], 
@@ -37,6 +39,12 @@ class AuthenticatedSessionController extends Controller
             // 3. BARRIÈRE DE SÉCURITÉ : Le rôle réel doit correspondre au portail demandé
             //    Les administrateurs ne peuvent se connecter que via le portail 'admin'.
             $userRole = $user->role ? $user->role->nom : null;
+            if (Auth::user()->status === 'suspended') {
+                Auth::logout();
+                return back()->withErrors([
+                    'email' => 'Votre accès au système bancaire a été suspendu. Veuillez contacter un administrateur.',
+                ]);
+            }
 
             if ($userRole !== $credentials['role_attendu']) {
                 // Déconnexion immédiate si le rôle ne correspond pas au poste demandé

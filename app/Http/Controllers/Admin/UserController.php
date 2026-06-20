@@ -7,27 +7,31 @@ use App\Models\User;
 use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules\Password;
+use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 
 class UserController extends Controller
 {
-    // 1. Afficher la liste des utilisateurs et le formulaire
+    /**
+     * 1. Afficher la liste des utilisateurs et le formulaire de création
+     */
     public function index()
     {
         return Inertia::render('Admin/Users/Index', [
             'users' => User::with('role')->latest()->get(),
-            'roles' => Role::all() // Permet d'afficher les rôles (admin, caissier...) dans le formulaire select
+            'roles' => Role::all(),
         ]);
     }
 
-    // 2. Enregistrer un nouvel agent de la banque dans la base de données
+    /**
+     * 2. Provisionner / Créer un nouvel agent dans le système
+     */
     public function store(Request $request)
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => ['required', Password::defaults()],
+            'password' => 'required|string|min:6',
             'role_id' => 'required|exists:roles,id',
         ]);
 
@@ -36,7 +40,45 @@ class UserController extends Controller
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
             'role_id' => $validated['role_id'],
+            'status' => 'active', // Forcé à actif à la création
         ]);
+
+        return redirect()->back();
+    }
+
+    /**
+     * 3. Mettre à jour les habilitations, le profil ou le statut d'un agent
+     */
+    public function update(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => [
+                'required',
+                'string',
+                'email',
+                'max:255',
+                Rule::unique('users')->ignore($user->id),
+            ],
+            'role_id' => 'required|exists:roles,id',
+            'status' => 'required|in:active,suspended',
+            'password' => 'nullable|string|min:6',
+        ]);
+
+        // Mise à jour des champs de base
+        $user->name = $validated['name'];
+        $user->email = $validated['email'];
+        $user->role_id = $validated['role_id'];
+        $user->status = $validated['status'];
+
+        // Mise à jour du mot de passe uniquement s'il a été saisi dans le formulaire
+        if (!empty($validated['password'])) {
+            $user->password = Hash::make($validated['password']);
+        }
+
+        $user->save();
 
         return redirect()->back();
     }

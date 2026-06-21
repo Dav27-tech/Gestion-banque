@@ -10,7 +10,6 @@ use App\Http\Controllers\Admin\TransactionController;
 use App\Http\Controllers\Auditeur\AuditeurController;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Gestionnaire\GestionnaireController;
 
 // ---------------------------------------------------------
 // 1. PORTES D'ENTRÉE CLOISONNÉES (PUBLIQUES)

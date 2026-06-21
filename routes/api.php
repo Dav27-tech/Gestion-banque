@@ -6,7 +6,6 @@ use App\Http\Controllers\Admin\TransactionController;
 use App\Http\Controllers\Auditeur\AuditeurController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\Gestionnaire\GestionnaireController;
 
 // Route publique : N'importe qui peut tenter de se connecter
 Route::post('/login', [AuthenticatedSessionController::class, 'login']);

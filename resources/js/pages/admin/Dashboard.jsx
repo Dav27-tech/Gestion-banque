@@ -37,20 +37,6 @@ import {
     Cell,
 } from 'recharts';
 
-// --- Global Administrative Palettes ---
-const COLORS = {
-    primary: '#1e3a8a',
-    secondary: '#2563eb',
-    accentBlue: '#dbeafe',
-    lightBlue: '#eff6ff',
-    bgCard: '#ffffff',
-    bgMain: '#f8fafc',
-    success: '#10b981',
-    warning: '#f59e0b',
-    danger: '#ef4444',
-    chartColors: ['#1e3a8a', '#2563eb', '#60a5fa', '#93c5fd', '#a7f3d0'],
-};
-
 export default function Dashboard() {
     // 1. Recover your current page contextual bounds
     const { props } = usePage();

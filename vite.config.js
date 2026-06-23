@@ -27,4 +27,10 @@ export default defineConfig({
             formVariants: true,
         }),
     ],
+    server: {
+        host: '0.0.0.0', // Permet à Vite d'écouter sur tout le réseau local
+        hmr: {
+            host: '192.168.10.1', // Force Vite à donner ton IP aux machines clientes
+        },
+    },
 });

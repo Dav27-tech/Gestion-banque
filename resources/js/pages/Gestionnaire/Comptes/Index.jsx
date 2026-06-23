@@ -209,15 +209,17 @@ export default function Index() {
                             style={{
                                 display: 'flex',
                                 alignItems: 'center',
-                                gap: '10px',
+                                gap: '16px',
                             }}
                         >
                             <div
                                 style={{
-                                    backgroundColor: colors.primary,
-                                    color: '#fff',
-                                    padding: '8px',
-                                    borderRadius: '8px',
+                                    backgroundColor: '#0f766e',
+                                    padding: '12px',
+                                    borderRadius: '14px',
+                                    color: '#ffffff',
+                                    boxShadow:
+                                        '0 4px 10px rgba(15, 118, 110, 0.25)',
                                 }}
                             >
                                 <Wallet size={22} />
@@ -225,12 +227,13 @@ export default function Index() {
                             <h1
                                 style={{
                                     fontSize: '26px',
-                                    fontWeight: '700',
-                                    color: colors.textDark,
+                                    fontWeight: '800',
+                                    letterSpacing: '-0.5px',
                                     margin: 0,
+                                    color: '#0f766e',
                                 }}
                             >
-                                Account Management
+                                Gestion des Comptes
                             </h1>
                             <span
                                 style={{
@@ -254,8 +257,8 @@ export default function Index() {
                                 fontSize: '14px',
                             }}
                         >
-                            Open and manage corporate and retail customer bank
-                            accounts instantly.
+                            Création et gestion rapide des comptes bancaires
+                            pour les clients particuliers et professionnels
                         </p>
                     </div>
                 </div>
@@ -272,39 +275,39 @@ export default function Index() {
                 >
                     {[
                         {
-                            title: 'Total Accounts',
+                            title: 'Comptes Bancaires',
                             val: stats.total,
                             icon: <Users size={20} />,
                             bg: colors.white,
                         },
                         {
-                            title: 'Active Accounts',
+                            title: 'Comptes Actifs',
                             val: stats.active,
                             icon: <CheckCircle2 size={20} />,
                             bg: colors.white,
                             highlightColor: '#16a34a',
                         },
                         {
-                            title: 'Savings Products',
+                            title: 'Comptes Epargnes',
                             val: stats.savings,
                             icon: <Layers size={20} />,
                             bg: colors.white,
                         },
                         {
-                            title: 'Current Products',
+                            title: 'Compte Courant',
                             val: stats.current,
                             icon: <TrendingUp size={20} />,
                             bg: colors.white,
                         },
                         {
-                            title: 'Total USD Vault',
+                            title: 'Encaisse Totale (USD)',
                             val: formatMoney(stats.usdSum, 'USD'),
                             icon: <DollarSign size={20} />,
                             bg: colors.white,
                             isCurrency: true,
                         },
                         {
-                            title: 'Total CDF Vault',
+                            title: 'Encaisse Totale (CDF)',
                             val: formatMoney(stats.cdfSum, 'CDF'),
                             icon: <Wallet size={20} />,
                             bg: colors.white,

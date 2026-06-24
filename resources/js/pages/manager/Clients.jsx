@@ -30,7 +30,10 @@ export default function ClientsList({
             <div className="space-y-6">
                 <div className="flex items-center justify-between">
                     <h1 className="text-3xl font-bold">Clients</h1>
-                    <a href="/clients/create" className="btn btn-primary">
+                    <a
+                        href="/clients/create"
+                        className="rounded-xl bg-[#7A1C1C] px-4 py-2 text-sm font-semibold text-white shadow-sm transition-all hover:bg-[#410f0f]"
+                    >
                         Ajouter un client
                     </a>
                 </div>

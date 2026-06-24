@@ -93,9 +93,9 @@ export default function AuditorLayout({ children }) {
             width: 40,
             height: 40,
             borderRadius: 10,
-            background: 'linear-gradient(135deg, #7c3aed, #8b5cf6)',
+            background: 'linear-gradient(135deg, #7A1C1C, #9f2d2d)',
             color: '#ffffff',
-            boxShadow: '0 4px 10px rgba(124, 58, 237, 0.25)',
+            boxShadow: '0 4px 10px rgba(122, 28, 28, 0.25)',
         },
         brandTitle: {
             margin: 0,
@@ -120,15 +120,15 @@ export default function AuditorLayout({ children }) {
             fontWeight: 600,
             transition: 'all 200ms ease-in-out',
             borderLeft: item.active
-                ? '4px solid #7c3aed'
+                ? '4px solid #7A1C1C'
                 : '4px solid transparent',
             background: item.active
-                ? '#f5f3ff'
+                ? '#fff7f7'
                 : hoveredItem === index
                   ? '#f8fafc'
                   : 'transparent',
             color: item.active
-                ? '#7c3aed'
+                ? '#7A1C1C'
                 : hoveredItem === index
                   ? '#0f172a'
                   : '#475569',
@@ -139,14 +139,14 @@ export default function AuditorLayout({ children }) {
             marginTop: 24,
             padding: 16,
             borderRadius: 12,
-            background: 'linear-gradient(135deg, #f5f3ff 0%, #ddd6fe 100%)',
-            border: '1px solid #a78bfa',
+            background: 'linear-gradient(135deg, #fff7f7 0%, #f5d6d6 100%)',
+            border: '1px solid #e7b2b2',
         },
         infoTitle: {
             margin: 0,
             fontSize: 12,
             fontWeight: 700,
-            color: '#7c3aed',
+            color: '#7A1C1C',
             textTransform: 'uppercase',
             letterSpacing: '0.05em',
         },
@@ -176,14 +176,14 @@ export default function AuditorLayout({ children }) {
             width: 38,
             height: 38,
             borderRadius: '50%',
-            backgroundColor: '#ddd6fe',
-            color: '#7c3aed',
+            backgroundColor: '#f5d6d6',
+            color: '#7A1C1C',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             fontWeight: 700,
             fontSize: 13,
-            border: '2px solid #a78bfa',
+            border: '2px solid #e7b2b2',
         },
         userName: {
             fontWeight: 600,
@@ -314,14 +314,14 @@ export default function AuditorLayout({ children }) {
                                 width: '38px',
                                 height: '38px',
                                 borderRadius: '50%',
-                                backgroundColor: '#7c3aed',
+                                backgroundColor: '#7A1C1C',
                                 color: '#ffffff',
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center',
                                 fontWeight: '700',
                                 fontSize: '14px',
-                                boxShadow: '0 2px 4px rgba(15, 118, 110, 0.15)',
+                                boxShadow: '0 2px 4px rgba(122, 28, 28, 0.15)',
                             }}
                         >
                             {auth?.user?.name
@@ -349,12 +349,12 @@ export default function AuditorLayout({ children }) {
                                     marginTop: '2px',
                                 }}
                             >
-                                <FileCheck size={12} color="#7c3aed" />
+                                <FileCheck size={12} color="#7A1C1C" />
                                 <span
                                     style={{
                                         fontSize: '11px',
                                         fontWeight: '600',
-                                        color: '#7c3aed',
+                                        color: '#7A1C1C',
                                         textTransform: 'uppercase',
                                         letterSpacing: '0.05em',
                                     }}

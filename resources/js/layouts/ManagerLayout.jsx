@@ -43,13 +43,13 @@ export default function ManagerLayout({ children }) {
         justifyContent: 'space-between',
         padding: '12px 14px',
         borderRadius: '10px',
-        color: isActive ? '#0f766e' : '#475569',
-        backgroundColor: isActive ? '#f0fdfa' : 'transparent',
+        color: isActive ? '#7A1C1C' : '#475569',
+        backgroundColor: isActive ? '#fff7f7' : 'transparent',
         textDecoration: 'none',
         fontSize: '14px',
         fontWeight: isActive ? '600' : '500',
         transition: 'all 0.25s ease-in-out',
-        borderLeft: isActive ? '4px solid #0f766e' : '4px solid transparent',
+        borderLeft: isActive ? '4px solid #7A1C1C' : '4px solid transparent',
         boxSizing: 'border-box',
         cursor: 'pointer',
     });
@@ -75,9 +75,9 @@ export default function ManagerLayout({ children }) {
                     justifyContent: 'space-between',
                     padding: '24px 16px',
                     background: '#ffffff',
-                    borderRight: '1px solid #ccfbf1',
+                    borderRight: '1px solid #fdf2f2',
                     boxShadow:
-                        '0 4px 6px -1px rgba(15, 118, 110, 0.03), 0 2px 4px -1px rgba(0, 0, 0, 0.02)',
+                        '0 4px 6px -1px rgba(122, 28, 28, 0.03), 0 2px 4px -1px rgba(0, 0, 0, 0.02)',
                     boxSizing: 'border-box',
                     zIndex: 50,
                 }}
@@ -91,7 +91,7 @@ export default function ManagerLayout({ children }) {
                             alignItems: 'center',
                             gap: '12px',
                             padding: '0 8px 20px 8px',
-                            borderBottom: '1px solid #f0fdfa',
+                            borderBottom: '1px solid #fff7f7',
                             marginBottom: '20px',
                             position: 'relative',
                         }}
@@ -102,11 +102,11 @@ export default function ManagerLayout({ children }) {
                                 height: '40px',
                                 borderRadius: '10px',
                                 background:
-                                    'linear-gradient(135deg, #0f766e 0%, #14b8a6 100%)',
+                                    'linear-gradient(135deg, #7A1C1C 0%, #9f2d2d 100%)',
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center',
-                                boxShadow: '0 4px 10px rgba(15, 118, 110, 0.2)',
+                                boxShadow: '0 4px 10px rgba(122, 28, 28, 0.2)',
                             }}
                         >
                             <Landmark size={20} color="#ffffff" />
@@ -117,7 +117,7 @@ export default function ManagerLayout({ children }) {
                                     margin: 0,
                                     fontSize: '15px',
                                     fontWeight: '700',
-                                    color: '#134e4a',
+                                    color: '#423b3b',
                                     letterSpacing: '-0.025em',
                                 }}
                             >
@@ -150,8 +150,8 @@ export default function ManagerLayout({ children }) {
                             onMouseEnter={(e) => {
                                 if (!isClientsActive) {
                                     e.currentTarget.style.backgroundColor =
-                                        '#f0fdfa';
-                                    e.currentTarget.style.color = '#0f766e';
+                                        '#fff7f7';
+                                    e.currentTarget.style.color = '#7A1C1C';
                                 }
                             }}
                             onMouseLeave={(e) => {
@@ -187,8 +187,8 @@ export default function ManagerLayout({ children }) {
                             onMouseEnter={(e) => {
                                 if (!isComptesActive) {
                                     e.currentTarget.style.backgroundColor =
-                                        '#f0fdfa';
-                                    e.currentTarget.style.color = '#0f766e';
+                                        '#fff7f7';
+                                    e.currentTarget.style.color = '#7A1C1C';
                                 }
                             }}
                             onMouseLeave={(e) => {
@@ -226,9 +226,9 @@ export default function ManagerLayout({ children }) {
                             padding: '14px',
                             borderRadius: '12px',
                             background:
-                                'linear-gradient(135deg, #0f766e 0%, #115e59 100%)',
+                                'linear-gradient(135deg, #7A1C1C 0%, #410f0f 100%)',
                             color: '#ffffff',
-                            boxShadow: '0 4px 12px rgba(15, 118, 110, 0.15)',
+                            boxShadow: '0 4px 12px rgba(122, 28, 28, 0.15)',
                         }}
                     >
                         <div
@@ -237,7 +237,7 @@ export default function ManagerLayout({ children }) {
                                 fontWeight: '600',
                                 textTransform: 'uppercase',
                                 letterSpacing: '0.05em',
-                                color: '#ccfbf1',
+                                color: '#fdf2f2',
                             }}
                         >
                             Gestion Financière
@@ -259,7 +259,7 @@ export default function ManagerLayout({ children }) {
                                 justifyContent: 'space-between',
                                 marginTop: '12px',
                                 fontSize: '11px',
-                                color: '#ccfbf1',
+                                color: '#fdf2f2',
                                 borderTop: '1px solid rgba(204, 251, 241, 0.2)',
                                 paddingTop: '8px',
                             }}
@@ -270,7 +270,7 @@ export default function ManagerLayout({ children }) {
                                     width: '6px',
                                     height: '6px',
                                     borderRadius: '50%',
-                                    backgroundColor: '#2dd4bf',
+                                    backgroundColor: '#10b981',
                                 }}
                             ></span>
                         </div>
@@ -283,7 +283,7 @@ export default function ManagerLayout({ children }) {
                         display: 'flex',
                         flexDirection: 'column',
                         gap: '14px',
-                        borderTop: '1px solid #f0fdfa',
+                        borderTop: '1px solid #fff7f7',
                         paddingTop: '18px',
                     }}
                 >
@@ -296,7 +296,7 @@ export default function ManagerLayout({ children }) {
                             padding: '12px',
                             borderRadius: '12px',
                             backgroundColor: '#f8fafc',
-                            border: '1px solid #ccfbf1',
+                            border: '1px solid #fdf2f2',
                         }}
                     >
                         {/* CIRCULAR AVATAR AVEC INITIALES */}
@@ -305,14 +305,14 @@ export default function ManagerLayout({ children }) {
                                 width: '38px',
                                 height: '38px',
                                 borderRadius: '50%',
-                                backgroundColor: '#0f766e',
+                                backgroundColor: '#7A1C1C',
                                 color: '#ffffff',
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center',
                                 fontWeight: '700',
                                 fontSize: '14px',
-                                boxShadow: '0 2px 4px rgba(15, 118, 110, 0.15)',
+                                boxShadow: '0 2px 4px rgba(122, 28, 28, 0.15)',
                             }}
                         >
                             {auth?.user?.name
@@ -325,7 +325,7 @@ export default function ManagerLayout({ children }) {
                             <div
                                 style={{
                                     fontWeight: '600',
-                                    color: '#134e4a',
+                                    color: '#423b3b',
                                     fontSize: '13px',
                                     whiteSpace: 'nowrap',
                                     overflow: 'hidden',
@@ -342,12 +342,12 @@ export default function ManagerLayout({ children }) {
                                     marginTop: '2px',
                                 }}
                             >
-                                <BriefcaseBusiness size={12} color="#14b8a6" />
+                                <BriefcaseBusiness size={12} color="#9f2d2d" />
                                 <span
                                     style={{
                                         fontSize: '11px',
                                         fontWeight: '600',
-                                        color: '#14b8a6',
+                                        color: '#9f2d2d',
                                         textTransform: 'uppercase',
                                         letterSpacing: '0.05em',
                                     }}

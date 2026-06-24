@@ -46,10 +46,10 @@ export default function Index() {
 
     // Color definitions from your exact specification
     const colors = {
-        primary: '#0f766e',
-        supportingTeal: '#14b8a6',
-        lightTeal: '#99f6e4',
-        ultraLightTeal: '#ccfbf1',
+        primary: '#7A1C1C',
+        supportingTeal: '#9f2d2d',
+        lightTeal: '#e7b2b2',
+        ultraLightTeal: '#fdf2f2',
         white: '#ffffff',
         bgBg: '#f8fafc',
         textDark: '#0f172a',
@@ -214,12 +214,12 @@ export default function Index() {
                         >
                             <div
                                 style={{
-                                    backgroundColor: '#0f766e',
+                                    backgroundColor: '#7A1C1C',
                                     padding: '12px',
                                     borderRadius: '14px',
                                     color: '#ffffff',
                                     boxShadow:
-                                        '0 4px 10px rgba(15, 118, 110, 0.25)',
+                                        '0 4px 10px rgba(122, 28, 28, 0.25)',
                                 }}
                             >
                                 <Wallet size={22} />
@@ -230,7 +230,7 @@ export default function Index() {
                                     fontWeight: '800',
                                     letterSpacing: '-0.5px',
                                     margin: 0,
-                                    color: '#0f766e',
+                                    color: '#7A1C1C',
                                 }}
                             >
                                 Gestion des Comptes
@@ -1422,11 +1422,11 @@ export default function Index() {
                                                                         'uppercase',
                                                                     backgroundColor:
                                                                         isSavings
-                                                                            ? '#e0f2fe'
-                                                                            : '#e0e7ff',
+                                                                            ? '#fdf2f2'
+                                                                            : '#fff7f7',
                                                                     color: isSavings
-                                                                        ? '#0369a1'
-                                                                        : '#4338ca',
+                                                                        ? '#7A1C1C'
+                                                                        : '#7A1C1C',
                                                                 }}
                                                             >
                                                                 {
@@ -1473,12 +1473,12 @@ export default function Index() {
                                                                             compte.devise ===
                                                                             'USD'
                                                                                 ? '#dcfce7'
-                                                                                : '#ccfbf1',
+                                                                                : '#fdf2f2',
                                                                         color:
                                                                             compte.devise ===
                                                                             'USD'
                                                                                 ? '#15803d'
-                                                                                : '#0f766e',
+                                                                                : '#7A1C1C',
                                                                     }}
                                                                 >
                                                                     {

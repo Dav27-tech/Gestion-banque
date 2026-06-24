@@ -74,9 +74,9 @@ export default function CashierLayout({ children }) {
             width: 40,
             height: 40,
             borderRadius: 10,
-            background: 'linear-gradient(135deg, #2563eb, #3b82f6)',
+            background: 'linear-gradient(135deg, #7A1C1C, #9f2d2d)',
             color: '#ffffff',
-            boxShadow: '0 4px 10px rgba(37, 99, 235, 0.25)',
+            boxShadow: '0 4px 10px rgba(159, 45, 45, 0.25)',
         },
         brandTitle: {
             margin: 0,
@@ -102,15 +102,15 @@ export default function CashierLayout({ children }) {
             fontWeight: 600,
             transition: 'all 250ms ease-in-out',
             borderLeft: isTransactionsActive
-                ? '4px solid #2563eb'
+                ? '4px solid #9f2d2d'
                 : '4px solid transparent',
             background: isTransactionsActive
-                ? '#eff6ff'
+                ? '#fff7f7'
                 : hoveredNav
                   ? '#f8fafc'
                   : 'transparent',
             color: isTransactionsActive
-                ? '#2563eb'
+                ? '#9f2d2d'
                 : hoveredNav
                   ? '#0f172a'
                   : '#52647c',
@@ -119,14 +119,14 @@ export default function CashierLayout({ children }) {
             marginTop: 24,
             padding: 16,
             borderRadius: 12,
-            background: 'linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%)',
-            border: '1px solid #93c5fd',
+            background: 'linear-gradient(135deg, #fff7f7 0%, #f5d6d6 100%)',
+            border: '1px solid #e7b2b2',
         },
         infoTitle: {
             margin: 0,
             fontSize: 12,
             fontWeight: 700,
-            color: '#2563eb',
+            color: '#9f2d2d',
             textTransform: 'uppercase',
             letterSpacing: '0.05em',
         },
@@ -159,14 +159,14 @@ export default function CashierLayout({ children }) {
             width: 38,
             height: 38,
             borderRadius: '50%',
-            background: '#dbeafe',
-            color: '#2563eb',
+            background: '#f5d6d6',
+            color: '#9f2d2d',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             fontWeight: 700,
             fontSize: 13,
-            border: '2px solid #93c5fd',
+            border: '2px solid #e7b2b2',
         },
         userName: {
             fontWeight: 600,
@@ -182,11 +182,11 @@ export default function CashierLayout({ children }) {
             padding: '2px 6px',
             fontSize: 10,
             fontWeight: 700,
-            background: '#eff6ff',
-            color: '#2563eb',
+            background: '#fff7f7',
+            color: '#9f2d2d',
             borderRadius: 6,
             marginTop: 2,
-            border: '1px solid #93c5fd',
+            border: '1px solid #e7b2b2',
         },
         logoutBtn: {
             display: 'flex',
@@ -292,14 +292,14 @@ export default function CashierLayout({ children }) {
                                 width: '38px',
                                 height: '38px',
                                 borderRadius: '50%',
-                                backgroundColor: '#3b82f6',
+                                backgroundColor: '#9f2d2d',
                                 color: '#ffffff',
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center',
                                 fontWeight: 'bold',
                                 fontSize: '14px',
-                                boxShadow: '0 2px 4px rgba(59, 130, 246, 0.15)',
+                                boxShadow: '0 2px 4px rgba(159, 45, 45, 0.15)',
                             }}
                         >
                             {auth?.user?.name
@@ -327,12 +327,12 @@ export default function CashierLayout({ children }) {
                                     marginTop: '2px',
                                 }}
                             >
-                                <Wallet size={12} color="#2563eb" />
+                                <Wallet size={12} color="#9f2d2d" />
                                 <span
                                     style={{
                                         fontSize: '11px',
                                         fontWeight: '600',
-                                        color: '#2563eb',
+                                        color: '#9f2d2d',
                                         textTransform: 'uppercase',
                                         letterSpacing: '0.05em',
                                     }}

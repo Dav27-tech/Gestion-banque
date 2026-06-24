@@ -138,7 +138,7 @@ export default function Dashboard() {
                             style={{
                                 fontSize: '24px',
                                 fontWeight: '800',
-                                color: '#1e40af',
+                                color: '#7A1C1C',
                                 margin: '12px 0 0 0',
                                 letterSpacing: '-0.025em',
                             }}
@@ -173,7 +173,7 @@ export default function Dashboard() {
                             style={{
                                 fontSize: '24px',
                                 fontWeight: '800',
-                                color: '#0d9488',
+                                color: '#9f2d2d',
                                 margin: '12px 0 0 0',
                                 letterSpacing: '-0.025em',
                             }}
@@ -209,7 +209,7 @@ export default function Dashboard() {
                             style={{
                                 fontSize: '24px',
                                 fontWeight: '800',
-                                color: '#7c3aed',
+                                color: '#7A1C1C',
                                 margin: '12px 0 0 0',
                                 letterSpacing: '-0.025em',
                             }}
@@ -286,7 +286,7 @@ export default function Dashboard() {
                             gap: 10,
                         }}
                     >
-                        <FileSpreadsheet size={18} color="#7c3aed" />
+                        <FileSpreadsheet size={18} color="#7A1C1C" />
                         Journal Général des Mouvements Comptables (
                         {stats.total_operations} écritures)
                     </h3>

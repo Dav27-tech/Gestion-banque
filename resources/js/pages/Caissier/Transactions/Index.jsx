@@ -82,8 +82,8 @@ export default function Index() {
             {/* Scoped CSS Injector for modern interactive states & loading frames */}
             <style>{`
                 .banking-input:focus {
-                    border-color: #2563eb !important;
-                    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15) !important;
+                    border-color: #9f2d2d !important;
+                    box-shadow: 0 0 0 4px rgba(159, 45, 45, 0.15) !important;
                     outline: none;
                 }
                 .filter-btn {
@@ -127,11 +127,11 @@ export default function Index() {
                 >
                     <div
                         style={{
-                            backgroundColor: '#2563eb',
+                            backgroundColor: '#9f2d2d',
                             padding: '14px',
                             borderRadius: '12px',
                             color: '#ffffff',
-                            boxShadow: '0 4px 12px rgba(37, 99, 235, 0.2)',
+                            boxShadow: '0 4px 12px rgba(159, 45, 45, 0.2)',
                         }}
                     >
                         <svg
@@ -189,8 +189,8 @@ export default function Index() {
                         {
                             title: 'Total Transactions',
                             value: stats.totalCount,
-                            color: '#2563eb',
-                            bg: '#eff6ff',
+                            color: '#9f2d2d',
+                            bg: '#fff7f7',
                             desc: 'Opérations exécutées',
                         },
                         {
@@ -482,9 +482,9 @@ export default function Index() {
                                     style={{
                                         marginBottom: '20px',
                                         padding: '16px',
-                                        backgroundColor: '#eff6ff',
+                                        backgroundColor: '#fff7f7',
                                         borderRadius: '12px',
-                                        border: '1px solid #bfdbfe',
+                                        border: '1px solid #f5d6d6',
                                         animation: 'fadeIn 0.2s ease',
                                     }}
                                 >
@@ -494,7 +494,7 @@ export default function Index() {
                                             fontSize: '13px',
                                             fontWeight: '600',
                                             marginBottom: '8px',
-                                            color: '#1e40af',
+                                            color: '#7A1C1C',
                                         }}
                                     >
                                         Compte bénéficiaire (Destination) :
@@ -512,7 +512,7 @@ export default function Index() {
                                             width: '100%',
                                             padding: '11px 14px',
                                             borderRadius: '10px',
-                                            border: '1px solid #bfdbfe',
+                                            border: '1px solid #f5d6d6',
                                             backgroundColor: '#fff',
                                             color: '#111827',
                                             fontSize: '14px',
@@ -658,8 +658,8 @@ export default function Index() {
                                     width: '100%',
                                     padding: '13px',
                                     backgroundColor: processing
-                                        ? '#93c5fd'
-                                        : '#2563eb',
+                                        ? '#e7b2b2'
+                                        : '#9f2d2d',
                                     color: '#fff',
                                     border: 'none',
                                     borderRadius: '10px',
@@ -669,16 +669,16 @@ export default function Index() {
                                         ? 'not-allowed'
                                         : 'pointer',
                                     boxShadow:
-                                        '0 4px 12px rgba(37, 99, 235, 0.15)',
+                                        '0 4px 12px rgba(159, 45, 45, 0.15)',
                                     transition: 'background-color 0.2s ease',
                                 }}
                                 onMouseEnter={(e) =>
                                     !processing &&
-                                    (e.target.style.backgroundColor = '#1d4ed8')
+                                    (e.target.style.backgroundColor = '#7A1C1C')
                                 }
                                 onMouseLeave={(e) =>
                                     !processing &&
-                                    (e.target.style.backgroundColor = '#2563eb')
+                                    (e.target.style.backgroundColor = '#9f2d2d')
                                 }
                             >
                                 {processing
@@ -800,7 +800,7 @@ export default function Index() {
                                                         : 'transparent',
                                                 color:
                                                     activeFilter === tab.id
-                                                        ? '#2563eb'
+                                                        ? '#9f2d2d'
                                                         : '#6b7280',
                                                 boxShadow:
                                                     activeFilter === tab.id
@@ -944,8 +944,8 @@ export default function Index() {
                                                 const isWithdrawal =
                                                     tx.type === 'retrait';
 
-                                                let badgeBg = '#eff6ff',
-                                                    badgeColor = '#2563eb'; // Virement defaults
+                                                let badgeBg = '#fff7f7',
+                                                    badgeColor = '#9f2d2d'; // Virement defaults
                                                 if (isDeposit) {
                                                     badgeBg = '#e6f4ea';
                                                     badgeColor = '#137333';
@@ -1078,7 +1078,7 @@ export default function Index() {
                                                                     >
                                                                         <span
                                                                             style={{
-                                                                                color: '#2563eb',
+                                                                                color: '#9f2d2d',
                                                                                 fontSize:
                                                                                     '12px',
                                                                             }}
@@ -1182,8 +1182,8 @@ export default function Index() {
                                 >
                                     {filteredTransactions.map((tx) => {
                                         const isDeposit = tx.type === 'depot';
-                                        let badgeBg = '#eff6ff',
-                                            badgeColor = '#2563eb';
+                                        let badgeBg = '#fff7f7',
+                                            badgeColor = '#9f2d2d';
                                         if (isDeposit) {
                                             badgeBg = '#e6f4ea';
                                             badgeColor = '#137333';
@@ -1268,7 +1268,7 @@ export default function Index() {
                                                             <div>
                                                                 <span
                                                                     style={{
-                                                                        color: '#2563eb',
+                                                                        color: '#9f2d2d',
                                                                     }}
                                                                 >
                                                                     Bénéficiaire:

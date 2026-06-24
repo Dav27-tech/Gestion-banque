@@ -191,7 +191,7 @@ export default function Index() {
         });
     };
 
-    // --- STYLE DICTIONARY (THEME #1e3a8a) ---
+    // --- STYLE DICTIONARY (THEME #7A1C1C) ---
     const styles = {
         container: {
             padding: '24px',
@@ -219,17 +219,17 @@ export default function Index() {
             const cleanVal = String(val).toLowerCase();
             if (type === 'role') {
                 if (cleanVal === 'admin') {
-                    bg = '#dbeafe';
-                    color = '#1e40af';
+                    bg = '#f5d6d6';
+                    color = '#7A1C1C';
                 } else if (cleanVal === 'manager') {
-                    bg = '#ccfbf1';
-                    color = '#115e59';
+                    bg = '#fdf2f2';
+                    color = '#410f0f';
                 } else if (cleanVal === 'caissier' || cleanVal === 'cashier') {
                     bg = '#dcfce7';
                     color = '#166534';
                 } else if (cleanVal === 'auditeur' || cleanVal === 'auditor') {
-                    bg = '#f3e8ff';
-                    color = '#6b21a8';
+                    bg = '#fff7f7';
+                    color = '#7A1C1C';
                 }
             } else if (type === 'status') {
                 if (cleanVal === 'active') {
@@ -262,7 +262,7 @@ export default function Index() {
             color: '#464748',
         },
         btnPrimary: {
-            background: '#1e3a8a',
+            background: '#7A1C1C',
             color: '#fff',
             padding: '10px 16px',
             borderRadius: '8px',
@@ -295,7 +295,7 @@ export default function Index() {
 
             {/* INJECTION CSS POUR LES HOVERS ET FOCUS EFFECT */}
             <style>{`
-                .input-field:focus { border-color: #1e3a8a !important; box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.15) !important; }
+                .input-field:focus { border-color: #7A1C1C !important; box-shadow: 0 0 0 3px rgba(122, 28, 28, 0.15) !important; }
                 .tr-hover:hover { background-color: #f8fafc !important; }
                 .action-btn:hover { background-color: #f1f5f9 !important; border-radius: 6px; }
             `}</style>
@@ -366,8 +366,8 @@ export default function Index() {
                         label: 'Total Agents',
                         val: stats.total,
                         icon: <Users size={20} />,
-                        col: '#1e3a8a',
-                        bg: '#eff6ff',
+                        col: '#7A1C1C',
+                        bg: '#fff7f7',
                     },
                     {
                         label: 'Accès Actifs',
@@ -387,15 +387,15 @@ export default function Index() {
                         label: 'Guichet (Cpt)',
                         val: stats.cashier,
                         icon: <Shield size={18} />,
-                        col: '#0d9488',
-                        bg: '#ccfbf1',
+                        col: '#9f2d2d',
+                        bg: '#fdf2f2',
                     },
                     {
                         label: 'Auditeurs',
                         val: stats.auditor,
                         icon: <Clock size={18} />,
-                        col: '#7c3aed',
-                        bg: '#f3e8ff',
+                        col: '#7A1C1C',
+                        bg: '#fff7f7',
                     },
                 ].map((s, i) => (
                     <div key={i} style={styles.card}>
@@ -463,7 +463,7 @@ export default function Index() {
                             paddingBottom: '12px',
                         }}
                     >
-                        <UserPlus size={18} style={{ color: '#1e3a8a' }} />
+                        <UserPlus size={18} style={{ color: '#7A1C1C' }} />
                         <h3
                             style={{
                                 fontSize: '16px',

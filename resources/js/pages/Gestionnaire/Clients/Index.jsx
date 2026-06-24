@@ -75,14 +75,14 @@ export default function Index() {
             {/* Injection des styles d'animation focus et d'adaptation responsives */}
             <style>{`
                 .form-input:focus {
-                    border-color: #0f766e !important;
-                    box-shadow: 0 0 0 4px rgba(20, 184, 166, 0.15) !important;
+                    border-color: #7A1C1C !important;
+                    box-shadow: 0 0 0 4px rgba(159, 45, 45, 0.15) !important;
                     outline: none;
                 }
                 .submit-btn:hover:not(:disabled) {
-                    background: linear-gradient(135deg, #14b8a6 0%, #0f766e 100%) !important;
+                    background: linear-gradient(135deg, #9f2d2d 0%, #7A1C1C 100%) !important;
                     transform: translateY(-1px);
-                    box-shadow: 0 4px 12px rgba(15, 118, 110, 0.25) !important;
+                    box-shadow: 0 4px 12px rgba(122, 28, 28, 0.25) !important;
                 }
                 .table-row:hover {
                     background-color: #f8fafc !important;
@@ -113,7 +113,7 @@ export default function Index() {
                             position: 'fixed',
                             top: '24px',
                             right: '24px',
-                            backgroundColor: '#0f766e',
+                            backgroundColor: '#7A1C1C',
                             color: '#ffffff',
                             padding: '16px 24px',
                             borderRadius: '12px',
@@ -163,12 +163,12 @@ export default function Index() {
                     >
                         <div
                             style={{
-                                backgroundColor: '#0f766e',
+                                backgroundColor: '#7A1C1C',
                                 padding: '12px',
                                 borderRadius: '14px',
                                 color: '#ffffff',
                                 boxShadow:
-                                    '0 4px 10px rgba(15, 118, 110, 0.25)',
+                                    '0 4px 10px rgba(122, 28, 28, 0.25)',
                             }}
                         >
                             <svg
@@ -199,15 +199,15 @@ export default function Index() {
                                         fontWeight: '800',
                                         letterSpacing: '-0.5px',
                                         margin: 0,
-                                        color: '#0f766e',
+                                        color: '#7A1C1C',
                                     }}
                                 >
                                     Gestion des Clients
                                 </h2>
                                 <span
                                     style={{
-                                        backgroundColor: '#ccfbf1',
-                                        color: '#0f766e',
+                                        backgroundColor: '#fdf2f2',
+                                        color: '#7A1C1C',
                                         fontSize: '11px',
                                         fontWeight: '700',
                                         padding: '4px 10px',
@@ -259,7 +259,7 @@ export default function Index() {
                                 fontSize: '18px',
                                 fontWeight: '700',
                                 marginBottom: '20px',
-                                color: '#0f766e',
+                                color: '#7A1C1C',
                                 display: 'flex',
                                 alignItems: 'center',
                                 gap: '8px',
@@ -682,7 +682,7 @@ export default function Index() {
                                     border: 'none',
                                     borderRadius: '10px',
                                     background:
-                                        'linear-gradient(135deg, #0f766e 0%, #14b8a6 100%)',
+                                        'linear-gradient(135deg, #7A1C1C 0%, #9f2d2d 100%)',
                                     color: '#ffffff',
                                     fontWeight: '600',
                                     fontSize: '14px',
@@ -773,8 +773,8 @@ export default function Index() {
                             >
                                 <div
                                     style={{
-                                        backgroundColor: '#ccfbf1',
-                                        color: '#0f766e',
+                                        backgroundColor: '#fdf2f2',
+                                        color: '#7A1C1C',
                                         padding: '10px',
                                         borderRadius: '10px',
                                     }}
@@ -807,7 +807,7 @@ export default function Index() {
                                         style={{
                                             fontSize: '22px',
                                             fontWeight: '800',
-                                            color: '#0f766e',
+                                            color: '#7A1C1C',
                                             marginTop: '2px',
                                         }}
                                     >
@@ -830,8 +830,8 @@ export default function Index() {
                             >
                                 <div
                                     style={{
-                                        backgroundColor: '#e0f2fe',
-                                        color: '#0369a1',
+                                        backgroundColor: '#fdf2f2',
+                                        color: '#7A1C1C',
                                         padding: '10px',
                                         borderRadius: '10px',
                                     }}
@@ -873,7 +873,7 @@ export default function Index() {
                                         style={{
                                             fontSize: '22px',
                                             fontWeight: '800',
-                                            color: '#0369a1',
+                                            color: '#7A1C1C',
                                             marginTop: '2px',
                                         }}
                                     >
@@ -896,8 +896,8 @@ export default function Index() {
                             >
                                 <div
                                     style={{
-                                        backgroundColor: '#f3e8ff',
-                                        color: '#6b21a8',
+                                        backgroundColor: '#fff7f7',
+                                        color: '#7A1C1C',
                                         padding: '10px',
                                         borderRadius: '10px',
                                     }}
@@ -931,7 +931,7 @@ export default function Index() {
                                         style={{
                                             fontSize: '22px',
                                             fontWeight: '800',
-                                            color: '#6b21a8',
+                                            color: '#7A1C1C',
                                             marginTop: '2px',
                                         }}
                                     >
@@ -1039,9 +1039,9 @@ export default function Index() {
                                     Registre Général{' '}
                                     <span
                                         style={{
-                                            color: '#0f766e',
+                                            color: '#7A1C1C',
                                             fontSize: '13px',
-                                            backgroundColor: '#ccfbf1',
+                                            backgroundColor: '#fdf2f2',
                                             padding: '2px 8px',
                                             borderRadius: '6px',
                                             marginLeft: '6px',
@@ -1269,7 +1269,7 @@ export default function Index() {
                                                                     '14px 20px',
                                                                 fontWeight:
                                                                     '600',
-                                                                color: '#0f766e',
+                                                                color: '#7A1C1C',
                                                             }}
                                                         >
                                                             {client.nom}{' '}

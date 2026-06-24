@@ -25,14 +25,14 @@ export default function AdminLayout({ children }) {
         gap: '12px',
         padding: '12px 16px',
         borderRadius: '10px',
-        color: isActive ? '#1e3a8a' : '#475569',
-        backgroundColor: isActive ? '#eff6ff' : 'transparent',
+        color: isActive ? '#7A1C1C' : '#475569',
+        backgroundColor: isActive ? '#fff7f7' : 'transparent',
         textDecoration: 'none',
         fontSize: '14px',
         fontWeight: isActive ? '600' : '500',
         transition: 'all 0.2s ease-in-out',
         position: 'relative',
-        borderLeft: isActive ? '4px solid #2563eb' : '4px solid transparent',
+        borderLeft: isActive ? '4px solid #9f2d2d' : '4px solid transparent',
         cursor: 'pointer',
     });
 
@@ -57,7 +57,7 @@ export default function AdminLayout({ children }) {
                     justifyContent: 'space-between',
                     padding: '24px 16px',
                     background: '#ffffff',
-                    borderRight: '1px solid #eff6ff',
+                    borderRight: '1px solid #fff7f7',
                     boxShadow:
                         '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)',
                     boxSizing: 'border-box',
@@ -82,11 +82,11 @@ export default function AdminLayout({ children }) {
                                 width: '40px',
                                 height: '40px',
                                 borderRadius: '10px',
-                                backgroundColor: '#1e3a8a',
+                                backgroundColor: '#7A1C1C',
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center',
-                                boxShadow: '0 4px 12px rgba(30, 58, 138, 0.2)',
+                                boxShadow: '0 4px 12px rgba(122, 28, 28, 0.2)',
                             }}
                         >
                             <Building2 size={22} color="#ffffff" />
@@ -101,7 +101,7 @@ export default function AdminLayout({ children }) {
                                     letterSpacing: '-0.025em',
                                 }}
                             >
-                                Bank Administration
+                                Administration Banque
                             </h3>
                             <p
                                 style={{
@@ -111,7 +111,7 @@ export default function AdminLayout({ children }) {
                                     fontWeight: '500',
                                 }}
                             >
-                                System Management Portal
+                                Portail de gestion système
                             </p>
                         </div>
                     </div>
@@ -154,7 +154,7 @@ export default function AdminLayout({ children }) {
                                     size={18}
                                     strokeWidth={isDashboardActive ? 2.2 : 1.8}
                                 />
-                                <span style={{ flex: 1 }}>Dashboard</span>
+                                <span style={{ flex: 1 }}>Tableau de bord</span>
                                 <ChevronRight
                                     size={14}
                                     style={{
@@ -242,14 +242,14 @@ export default function AdminLayout({ children }) {
                                 width: '38px',
                                 height: '38px',
                                 borderRadius: '50%',
-                                backgroundColor: '#1e3a8a',
+                                backgroundColor: '#7A1C1C',
                                 color: '#ffffff',
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center',
                                 fontWeight: 'bold',
                                 fontSize: '14px',
-                                boxShadow: '0 2px 4px rgba(59, 130, 246, 0.15)',
+                                boxShadow: '0 2px 4px rgba(159, 45, 45, 0.15)',
                             }}
                         >
                             {auth?.user?.name
@@ -279,12 +279,12 @@ export default function AdminLayout({ children }) {
                                     marginTop: '2px',
                                 }}
                             >
-                                <ShieldCheck size={12} color="#1e5cc0" />
+                                <ShieldCheck size={12} color="#9f2d2d" />
                                 <span
                                     style={{
                                         fontSize: '11px',
                                         fontWeight: '600',
-                                        color: '#1e5cc0',
+                                        color: '#9f2d2d',
                                         textTransform: 'uppercase',
                                         letterSpacing: '0.05em',
                                     }}

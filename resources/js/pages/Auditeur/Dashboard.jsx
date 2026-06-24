@@ -12,7 +12,7 @@ export default function Dashboard() {
     // Récupération complète des données fournies par AuditeurController
     const { transactions, stats } = usePage().props;
 
-    const déclencherImpression = () => {
+    const declencherImpression = () => {
         window.print();
     };
 
@@ -80,7 +80,7 @@ export default function Dashboard() {
                         style={{ display: 'flex', gap: '12px' }}
                     >
                         <button
-                            onClick={déclencherImpression}
+                            onClick={declencherImpression}
                             style={{
                                 display: 'flex',
                                 alignItems: 'center',
@@ -182,43 +182,7 @@ export default function Dashboard() {
                             FC
                         </h3>
                     </div>
-
                     {/* Carte 3 */}
-                    <div
-                        className="carte-stat"
-                        style={{
-                            backgroundColor: '#ffffff',
-                            padding: '24px',
-                            borderRadius: '14px',
-                            border: '1px solid #e2e8f0',
-                            boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.02)',
-                        }}
-                    >
-                        <span
-                            style={{
-                                fontSize: '12px',
-                                fontWeight: '700',
-                                color: '#64748b',
-                                textTransform: 'uppercase',
-                                letterSpacing: '0.05em',
-                            }}
-                        >
-                            Intérêts Distribués (USD)
-                        </span>
-                        <h3
-                            style={{
-                                fontSize: '24px',
-                                fontWeight: '800',
-                                color: '#7A1C1C',
-                                margin: '12px 0 0 0',
-                                letterSpacing: '-0.025em',
-                            }}
-                        >
-                            {parseFloat(stats.interets_usd).toFixed(2)} $
-                        </h3>
-                    </div>
-
-                    {/* Carte 4 */}
                     <div
                         className="carte-stat"
                         style={{

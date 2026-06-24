@@ -442,7 +442,7 @@ export default function Index() {
                                     <div style={{ position: 'relative' }}>
                                         <input
                                             type="text"
-                                            placeholder="🔍 Recharger ou chercher un client..."
+                                            placeholder="Recharger ou chercher un client..."
                                             value={clientSearchText}
                                             onChange={(e) => {
                                                 setClientSearchText(

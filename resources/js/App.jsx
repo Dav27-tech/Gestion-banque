@@ -9,8 +9,8 @@ createInertiaApp({
     title: (title) => `${title} - ${appName}`,
     resolve: (name) =>
         resolvePageComponent(
-            `./Pages/${name}.jsx`,
-            import.meta.glob('./Pages/**/*.jsx'),
+            `./pages/${name}.jsx`,
+            import.meta.glob('./pages/**/*.jsx'),
         ),
     setup({ el, App, props }) {
         // ⚠️ FIX CRITICAL: On vérifie si l'élément DOM existe avant de faire le createRoot

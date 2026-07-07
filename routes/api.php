@@ -7,11 +7,11 @@ use App\Http\Controllers\Auditeur\AuditeurController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
-// Route publique : N'importe qui peut tenter de se connecter
-Route::post('/login', [AuthenticatedSessionController::class, 'login']);
-
-// Routes protégées : Il faut obligatoirement être connecté (Sanctum)
-Route::middleware('auth:sanctum')->group(function () {
+    // Route publique : N'importe qui peut tenter de se connecter
+    Route::post('/login', [AuthenticatedSessionController::class, 'login']);
+    
+    // Routes protégées : Il faut obligatoirement être connecté (Sanctum)
+    Route::middleware('auth:sanctum')->group(function () {
     
     // Route de déconnexion
     Route::post('/logout', [AuthenticatedSessionController::class, 'logout']);

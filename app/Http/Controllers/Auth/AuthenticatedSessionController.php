@@ -20,7 +20,7 @@ class AuthenticatedSessionController extends Controller
         $credentials = $request->validate([
             'email'        => 'required|string|email',
             'password'     => 'required|string',
-            'role_attendu' => 'required|string|in:admin,gestionnaire,caissier,auditeur',
+            'role_attendu' => 'required|string|in:admin,gestionnaire,caissier,auditeur,client',
         ]);
 
         
@@ -36,8 +36,7 @@ class AuthenticatedSessionController extends Controller
             
             $user = Auth::user();
 
-            // 3. BARRIÈRE DE SÉCURITÉ : Le rôle réel doit correspondre au portail demandé
-            //    Les administrateurs ne peuvent se connecter que via le portail 'admin'.
+            // Ne permet pas le login pour un utilisateur suspendu
             $userRole = $user->role ? $user->role->nom : null;
             if (Auth::user()->status === 'suspended') {
                 Auth::logout();
@@ -70,6 +69,14 @@ class AuthenticatedSessionController extends Controller
 
                 case 'auditeur':
                     return redirect()->route('auditeur.dashboard');
+
+                case 'client':
+
+                    if ($user->must_change_password) {
+                        return redirect()->route('client.change-password');
+                    }
+                                
+                    return redirect()->route('client.dashboard');
 
                 default:
                     Auth::logout();

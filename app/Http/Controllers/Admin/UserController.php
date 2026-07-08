@@ -13,9 +13,6 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    /**
-     * 1. Afficher la liste des utilisateurs et le formulaire de création
-     */
     public function index()
     {
         return Inertia::render('Admin/Users/Index', [
@@ -32,9 +29,7 @@ class UserController extends Controller
         ]);
     }
 
-    /**
-     * 2. Provisionner / Créer un nouvel agent dans le système
-     */
+    // Créer un nouvel agent dans le système
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -55,9 +50,7 @@ class UserController extends Controller
         return redirect()->back();
     }
 
-    /**
-     * 3. Mettre à jour les habilitations, le profil ou le statut d'un agent
-     */
+    // Mettre à jour le profil ou le statut d'un agent
     public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);

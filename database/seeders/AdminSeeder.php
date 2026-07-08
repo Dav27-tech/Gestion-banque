@@ -19,6 +19,7 @@ class AdminSeeder extends Seeder
         Role::firstOrCreate(['nom' => 'caissier']);
         Role::firstOrCreate(['nom' => 'gestionnaire']);
         Role::firstOrCreate(['nom' => 'auditeur']);
+        Role::firstOrCreate(['nom' => 'client']);
 
         $motDePasse = env('ADMIN_PASSWORD', "122345678");
 

@@ -14,7 +14,7 @@ class Compte extends Model
         return $this->belongsTo(Client::class);
     }
 
-    // Un compte peut subir plusieurs transactions (dépôts/retraits)
+    // Un compte peut subir plusieurs transactions (dépôts/retraits/virements)
     public function transactions()
     {
         return $this->hasMany(Transaction::class);

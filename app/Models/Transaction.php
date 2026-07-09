@@ -16,6 +16,9 @@ class Transaction extends Model
         'montant',
         'reference_unique',
         'description',
+        'statut',
+        'validated_at',
+        'client_validateur_id',
     ];
 
    // Le compte principal émetteur ou concerné
@@ -34,5 +37,13 @@ class Transaction extends Model
     public function caissier(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function clientValidateur()
+    {
+        return $this->belongsTo(
+            Client::class,
+            'client_validateur_id'
+        );
     }
 }

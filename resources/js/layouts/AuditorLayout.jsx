@@ -11,6 +11,8 @@ import {
     FileCheck,
 } from 'lucide-react';
 
+import ApplicationFeedback from '../components/ApplicationFeedback';
+
 export default function AuditorLayout({ children }) {
     const { props, url } = usePage();
     const auth = props.auth;
@@ -379,7 +381,10 @@ export default function AuditorLayout({ children }) {
                 </div>
             </aside>
 
-            <main style={styles.mainContent}>{children}</main>
+            <main style={styles.mainContent}>
+                <ApplicationFeedback />
+                {children}
+            </main>
         </div>
     );
 }

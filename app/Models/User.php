@@ -12,7 +12,7 @@ class User extends Authenticatable
     // On met les 3 outils dont le modèle a besoin
     use HasApiTokens, HasFactory, Notifiable; 
 
-    protected $fillable = ['name', 'email', 'password', 'role_id'];
+    protected $fillable = ['name', 'email', 'password', 'role_id', 'temporary_password','must_change_password'];
 
     // Un utilisateur a UN SEUL rôle
     public function role()
@@ -24,5 +24,10 @@ class User extends Authenticatable
     public function transactions()
     {
         return $this->hasMany(Transaction::class);
+    }
+
+    public function client()
+    {
+        return $this->hasOne(Client::class);
     }
 }

@@ -9,6 +9,8 @@ import {
     ChevronRight,
 } from 'lucide-react';
 
+import ApplicationFeedback from '../components/ApplicationFeedback';
+
 export default function AdminLayout({ children }) {
     const auth = usePage().props.auth;
     const urlActuelle =
@@ -257,7 +259,7 @@ export default function AdminLayout({ children }) {
                                 : 'A'}
                         </div>
 
-                        {/* INFOS COMPTE */}
+                        {/** info compte*/}
                         <div style={{ flex: 1, minWidth: 0 }}>
                             <div
                                 style={{
@@ -342,6 +344,7 @@ export default function AdminLayout({ children }) {
 
             {/* ESPACE DE CONTENU PRINCIPAL */}
             <main style={{ flex: 1, padding: '40px', overflowY: 'auto' }}>
+                <ApplicationFeedback />
                 {children}
             </main>
         </div>

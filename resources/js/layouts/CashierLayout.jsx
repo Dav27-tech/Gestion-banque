@@ -12,6 +12,8 @@ import {
     WalletCards,
 } from 'lucide-react';
 
+import ApplicationFeedback from '../components/ApplicationFeedback';
+
 export default function CashierLayout({ children }) {
     const { props, url } = usePage();
     const auth = props.auth;
@@ -389,7 +391,10 @@ export default function CashierLayout({ children }) {
             </aside>
 
             {/* Core Workspace Main Panel */}
-            <main style={styles.mainContent}>{children}</main>
+            <main style={styles.mainContent}>
+                <ApplicationFeedback />
+                {children}
+            </main>
         </div>
     );
 }

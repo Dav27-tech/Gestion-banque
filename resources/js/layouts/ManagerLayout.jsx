@@ -11,6 +11,8 @@ import {
     BriefcaseBusiness,
 } from 'lucide-react';
 
+import ApplicationFeedback from '../components/ApplicationFeedback';
+
 export default function ManagerLayout({ children }) {
     const auth = usePage().props.auth;
     const urlActuelle =
@@ -401,6 +403,7 @@ export default function ManagerLayout({ children }) {
 
             {/* CONTENU DE LA PAGE EN COURS */}
             <main style={{ flex: 1, padding: '40px', overflowY: 'auto' }}>
+                <ApplicationFeedback />
                 {children}
             </main>
         </div>

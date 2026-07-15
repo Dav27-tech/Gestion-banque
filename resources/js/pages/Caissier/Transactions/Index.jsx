@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { usePage, useForm, Head } from '@inertiajs/react';
 import CashierLayout from '../../../layouts/CashierLayout';
 
@@ -74,6 +74,28 @@ export default function Index() {
             return matchesFilter && matchesSearch;
         });
     }, [transactions, activeFilter, searchTerm]);
+
+    // 1. Setup state for the current page and items per page
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 4; // Change this number as needed
+
+    // 2. Reset to page 1 whenever filters change
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [filteredTransactions]);
+
+    // 3. Calculate pagination boundaries
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+
+    // 4. Slice the filtered array to get only the current page's items
+    const currentItems = filteredTransactions.slice(
+        indexOfFirstItem,
+        indexOfLastItem,
+    );
+
+    // 5. Calculate total pages
+    const totalPages = Math.ceil(filteredTransactions.length / itemsPerPage);
 
     return (
         <Layout>
@@ -935,17 +957,27 @@ export default function Index() {
                                                 >
                                                     Caissier
                                                 </th>
+                                                <th
+                                                    style={{
+                                                        padding: '12px 16px',
+                                                        fontWeight: '600',
+                                                        textAlign: 'center',
+                                                    }}
+                                                >
+                                                    Statut
+                                                </th>
                                             </tr>
                                         </thead>
                                         <tbody style={{ fontSize: '13px' }}>
-                                            {filteredTransactions.map((tx) => {
+                                            {/* Use currentItems instead of filteredTransactions */}
+                                            {currentItems.map((tx) => {
                                                 const isDeposit =
                                                     tx.type === 'depot';
                                                 const isWithdrawal =
                                                     tx.type === 'retrait';
 
-                                                let badgeBg = '#fff7f7',
-                                                    badgeColor = '#9f2d2d'; // Virement defaults
+                                                let badgeBg = '#d6e0f3',
+                                                    badgeColor = '#205dd0'; // Virement defaults
                                                 if (isDeposit) {
                                                     badgeBg = '#e6f4ea';
                                                     badgeColor = '#137333';
@@ -954,7 +986,6 @@ export default function Index() {
                                                     badgeBg = '#fce8e6';
                                                     badgeColor = '#c5221f';
                                                 }
-
                                                 return (
                                                     <tr
                                                         key={tx.id}
@@ -1127,7 +1158,9 @@ export default function Index() {
                                                                     'right',
                                                                 color: isDeposit
                                                                     ? '#16a34a'
-                                                                    : '#dc2626',
+                                                                    : isWithdrawal
+                                                                      ? '#dc2626'
+                                                                      : '#205dd0',
                                                             }}
                                                         >
                                                             {isDeposit
@@ -1164,11 +1197,132 @@ export default function Index() {
                                                             {tx.caissier.name ||
                                                                 'Système'}
                                                         </td>
+
+                                                        <td className="p-4">
+                                                            {tx.statut?.toLowerCase() ===
+                                                                'en_attente' && (
+                                                                <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-100 px-2 py-0.5 text-xs font-medium text-amber-800">
+                                                                    <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-amber-500"></span>{' '}
+                                                                    Attente
+                                                                </span>
+                                                            )}
+                                                            {tx.statut?.toLowerCase() ===
+                                                                'validee' && (
+                                                                <span className="inline-flex items-center gap-1.5 rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-800">
+                                                                    <span className="h-1.5 w-1.5 rounded-full bg-green-500"></span>{' '}
+                                                                    Validée
+                                                                </span>
+                                                            )}
+                                                            {tx.statut?.toLowerCase() ===
+                                                                'rejetee' && (
+                                                                <span className="inline-flex items-center gap-1.5 rounded-full bg-red-100 px-2 py-0.5 text-xs font-medium text-red-800">
+                                                                    <span className="h-1.5 w-1.5 rounded-full bg-red-500"></span>{' '}
+                                                                    Rejetée
+                                                                </span>
+                                                            )}
+                                                        </td>
                                                     </tr>
                                                 );
                                             })}
                                         </tbody>
                                     </table>
+                                    {/* Pagination Controls Component */}
+                                    {totalPages > 1 && (
+                                        <div
+                                            style={{
+                                                display: 'flex',
+                                                justifyContent: 'space-between',
+                                                alignItems: 'center',
+                                                padding: '16px',
+                                                borderTop: '1px solid #e5e7eb',
+                                                fontSize: '13px',
+                                                color: '#4b5563',
+                                            }}
+                                        >
+                                            <div>
+                                                Affichage de{' '}
+                                                <strong>
+                                                    {indexOfFirstItem + 1}
+                                                </strong>{' '}
+                                                à{' '}
+                                                <strong>
+                                                    {Math.min(
+                                                        indexOfLastItem,
+                                                        filteredTransactions.length,
+                                                    )}
+                                                </strong>{' '}
+                                                (
+                                                <strong>
+                                                    {
+                                                        filteredTransactions.length
+                                                    }
+                                                </strong>{' '}
+                                                transactions)
+                                            </div>
+
+                                            <div
+                                                style={{
+                                                    display: 'flex',
+                                                    gap: '8px',
+                                                }}
+                                            >
+                                                <button
+                                                    onClick={() =>
+                                                        setCurrentPage((prev) =>
+                                                            Math.max(
+                                                                prev - 1,
+                                                                1,
+                                                            ),
+                                                        )
+                                                    }
+                                                    disabled={currentPage === 1}
+                                                    className={`rounded-md border px-3 py-1.5 text-xs font-medium transition-colors ${
+                                                        currentPage === 1
+                                                            ? 'cursor-not-allowed border-gray-200 bg-gray-50 text-gray-400'
+                                                            : 'border-gray-300 bg-white text-gray-700 hover:bg-gray-50'
+                                                    }`}
+                                                >
+                                                    Précédent
+                                                </button>
+
+                                                <div
+                                                    style={{
+                                                        display: 'flex',
+                                                        alignItems: 'center',
+                                                        gap: '4px',
+                                                    }}
+                                                >
+                                                    <span className="px-2 text-xs font-medium text-gray-700">
+                                                        Page {currentPage} sur{' '}
+                                                        {totalPages}
+                                                    </span>
+                                                </div>
+
+                                                <button
+                                                    onClick={() =>
+                                                        setCurrentPage((prev) =>
+                                                            Math.min(
+                                                                prev + 1,
+                                                                totalPages,
+                                                            ),
+                                                        )
+                                                    }
+                                                    disabled={
+                                                        currentPage ===
+                                                        totalPages
+                                                    }
+                                                    className={`rounded-md border px-3 py-1.5 text-xs font-medium transition-colors ${
+                                                        currentPage ===
+                                                        totalPages
+                                                            ? 'cursor-not-allowed border-gray-200 bg-gray-50 text-gray-400'
+                                                            : 'border-gray-300 bg-white text-gray-700 hover:bg-gray-50'
+                                                    }`}
+                                                >
+                                                    Suivant
+                                                </button>
+                                            </div>
+                                        </div>
+                                    )}
                                 </div>
 
                                 {/* Mobile Structural Adaptive Layout List */}

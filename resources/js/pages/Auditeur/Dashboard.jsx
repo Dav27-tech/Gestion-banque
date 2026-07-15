@@ -24,7 +24,7 @@ export default function Dashboard() {
                 fontFamily: 'system-ui, sans-serif',
             }}
         >
-            <Head title="Contrôle Interne & Audit Financier" />
+            <Head title="Audit Financier" />
 
             {/* Injection CSS pour l'impression directe conforme */}
             <style>{`
@@ -312,6 +312,14 @@ export default function Dashboard() {
                                 >
                                     Opérateur (Caissier/Système)
                                 </th>
+                                <th
+                                    style={{
+                                        padding: '12px 10px',
+                                        fontWeight: '700',
+                                    }}
+                                >
+                                    Statut
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -362,13 +370,13 @@ export default function Dashboard() {
                                                         ? '#dcfce7'
                                                         : tx.type === 'retrait'
                                                           ? '#fee2e2'
-                                                          : '#fef3c7',
+                                                          : '#cae1f7',
                                                 color:
                                                     tx.type === 'depot'
                                                         ? '#166534'
                                                         : tx.type === 'retrait'
                                                           ? '#991b1b'
-                                                          : '#92400e',
+                                                          : '#134ebc',
                                             }}
                                         >
                                             {tx.type}
@@ -402,8 +410,10 @@ export default function Dashboard() {
                                             fontSize: '15px',
                                             color:
                                                 tx.type === 'depot'
-                                                    ? '#16a34a'
-                                                    : '#dc2626',
+                                                    ? '#1eb257'
+                                                    : tx.type === 'retrait'
+                                                      ? '#ed3636f0'
+                                                      : '#205dd0',
                                         }}
                                     >
                                         {tx.type === 'depot' ? '+' : '-'}{' '}
@@ -419,7 +429,30 @@ export default function Dashboard() {
                                     >
                                         {tx.caissier
                                             ? tx.caissier.name
-                                            : '🎛️ SYSTÈME (Intérêts)'}
+                                            : ' SYSTÈME (Intérêts)'}
+                                    </td>
+                                    <td className="p-4">
+                                        {tx.statut?.toLowerCase() ===
+                                            'en_attente' && (
+                                            <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-100 px-2 py-0.5 text-xs font-medium text-amber-800">
+                                                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-amber-500"></span>{' '}
+                                                En attente
+                                            </span>
+                                        )}
+                                        {tx.statut?.toLowerCase() ===
+                                            'validee' && (
+                                            <span className="inline-flex items-center gap-1.5 rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-800">
+                                                <span className="h-1.5 w-1.5 rounded-full bg-green-500"></span>{' '}
+                                                Validée
+                                            </span>
+                                        )}
+                                        {tx.statut?.toLowerCase() ===
+                                            'rejetee' && (
+                                            <span className="inline-flex items-center gap-1.5 rounded-full bg-red-100 px-2 py-0.5 text-xs font-medium text-red-800">
+                                                <span className="h-1.5 w-1.5 rounded-full bg-red-500"></span>{' '}
+                                                Rejetée
+                                            </span>
+                                        )}
                                     </td>
                                 </tr>
                             ))}

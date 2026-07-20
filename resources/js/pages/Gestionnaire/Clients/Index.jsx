@@ -4,7 +4,9 @@ import ManagerLayout from '../../../layouts/ManagerLayout';
 
 export default function Index() {
     const Layout = ManagerLayout;
-    const { auth, clients = [] } = usePage().props;
+    const { users, clients = [] } = usePage().props;
+    const dernier_user = users && users.length > 0 ? users[0] : null;
+    console.log(clients);
 
     // État local pour le filtrage en direct (Recherche locale sans modification backend)
     const [searchTerm, setSearchTerm] = useState('');
@@ -31,7 +33,7 @@ export default function Index() {
             onSuccess: () => {
                 reset();
                 setShowSuccessToast(true);
-                setTimeout(() => setShowSuccessToast(false), 5000);
+                setTimeout(() => setShowSuccessToast(false), 10000);
             },
         });
     };
@@ -56,7 +58,7 @@ export default function Index() {
         return [...clients].slice(0, 5);
     }, [clients]);
 
-    // Données de statistiques calculées dynamiquement pour le Workspace Manager
+    // Données de statistiques calculées dynamiquement
     const stats = useMemo(() => {
         const total = clients.length;
         const linkedAccounts = Math.floor(total * 0.85); // Simulation calculée pour l'UI CRM
@@ -70,7 +72,7 @@ export default function Index() {
 
     return (
         <Layout>
-            <Head title="CRM - Gestion des Clients" />
+            <Head title="Gestion des Clients" />
 
             {/* Injection des styles d'animation focus et d'adaptation responsives */}
             <style>{`
@@ -136,8 +138,16 @@ export default function Index() {
                             <path d="M20 6L9 17l-5-5" />
                         </svg>
                         <span style={{ fontWeight: '500', fontSize: '14px' }}>
-                            Client enregistré avec succès dans le registre
-                            bancaire !
+                            Client enregistré avec succès ! <br /> <br />
+                            <p>Mot de passe temporaire :</p>
+                            <code
+                                style={{
+                                    fontSize: '1.3em',
+                                    color: '#2dc837',
+                                }}
+                            >
+                                {dernier_user.temporary_password}
+                            </code>
                         </span>
                     </div>
                 )}
@@ -167,8 +177,7 @@ export default function Index() {
                                 padding: '12px',
                                 borderRadius: '14px',
                                 color: '#ffffff',
-                                boxShadow:
-                                    '0 4px 10px rgba(122, 28, 28, 0.25)',
+                                boxShadow: '0 4px 10px rgba(122, 28, 28, 0.25)',
                             }}
                         >
                             <svg
@@ -204,20 +213,6 @@ export default function Index() {
                                 >
                                     Gestion des Clients
                                 </h2>
-                                <span
-                                    style={{
-                                        backgroundColor: '#fdf2f2',
-                                        color: '#7A1C1C',
-                                        fontSize: '11px',
-                                        fontWeight: '700',
-                                        padding: '4px 10px',
-                                        borderRadius: '9999px',
-                                        textTransform: 'uppercase',
-                                        letterSpacing: '0.5px',
-                                    }}
-                                >
-                                    Workspace Manager
-                                </span>
                             </div>
                             <p
                                 style={{
@@ -529,14 +524,6 @@ export default function Index() {
                                     }}
                                 >
                                     Adresse Email{' '}
-                                    <span
-                                        style={{
-                                            color: '#94a3b8',
-                                            fontWeight: '400',
-                                        }}
-                                    >
-                                        (Optionnel)
-                                    </span>
                                 </label>
                                 <div style={{ position: 'relative' }}>
                                     <input
@@ -1158,6 +1145,11 @@ export default function Index() {
                                             >
                                                 Date Enreg.
                                             </th>
+                                            <th
+                                                style={{ padding: '14px 20px' }}
+                                            >
+                                                T_P
+                                            </th>
                                         </tr>
                                     </thead>
                                     <tbody style={{ fontSize: '14px' }}>
@@ -1342,6 +1334,26 @@ export default function Index() {
                                                                       },
                                                                   )
                                                                 : 'Récent'}
+                                                        </td>
+                                                        <td
+                                                            style={{
+                                                                padding:
+                                                                    '14px 20px',
+                                                                color: '#64748b',
+                                                                fontSize:
+                                                                    '13px',
+                                                            }}
+                                                        >
+                                                            {client.temporary
+                                                                ?.temporary_password || (
+                                                                <span
+                                                                    style={{
+                                                                        color: '#cbd5e1',
+                                                                    }}
+                                                                >
+                                                                    —
+                                                                </span>
+                                                            )}
                                                         </td>
                                                     </tr>
                                                 ),

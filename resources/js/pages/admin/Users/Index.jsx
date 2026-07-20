@@ -291,7 +291,7 @@ export default function Index() {
 
     return (
         <AdminLayout>
-            <Head title="Contrôle d'Accès Système" />
+            <Head title="Gestion Utilisateur" />
 
             {/* INJECTION CSS POUR LES HOVERS ET FOCUS EFFECT */}
             <style>{`
@@ -1227,59 +1227,6 @@ export default function Index() {
                                 🔴 Suspendu - Accès révoqué
                             </option>
                         </select>
-                    </div>
-
-                    <div
-                        style={{
-                            borderTop: '1px dashed #e2e8f0',
-                            paddingTop: '14px',
-                            marginTop: '10px',
-                        }}
-                    >
-                        <div
-                            style={{
-                                display: 'flex',
-                                alignItems: 'center',
-                                gap: '6px',
-                                marginBottom: '8px',
-                                color: '#f59e0b',
-                            }}
-                        >
-                            <AlertTriangle size={14} />
-                            <label
-                                style={{
-                                    fontSize: '13px',
-                                    fontWeight: '700',
-                                    color: '#374151',
-                                }}
-                            >
-                                Réinitialiser le mot de passe
-                            </label>
-                        </div>
-                        <input
-                            type="password"
-                            placeholder="Saisir un nouveau mot de passe si changement"
-                            value={editData.password}
-                            onChange={(e) =>
-                                setEditData('password', e.target.value)
-                            }
-                            style={styles.input}
-                            className="input-field"
-                        />
-                        <p
-                            style={{
-                                margin: '4px 0 0 0',
-                                fontSize: '11px',
-                                color: '#6b7280',
-                            }}
-                        >
-                            Laissez vide pour conserver le mot de passe actuel.
-                        </p>
-                        {editErrors.password && (
-                            <div style={{ color: '#dc2626', fontSize: '12px' }}>
-                                {editErrors.password}
-                            </div>
-                        )}
                     </div>
 
                     <div

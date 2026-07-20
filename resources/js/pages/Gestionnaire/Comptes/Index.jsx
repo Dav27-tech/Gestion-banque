@@ -235,20 +235,6 @@ export default function Index() {
                             >
                                 Gestion des Comptes
                             </h1>
-                            <span
-                                style={{
-                                    backgroundColor: colors.ultraLightTeal,
-                                    color: colors.primary,
-                                    fontSize: '12px',
-                                    fontWeight: '600',
-                                    padding: '4px 10px',
-                                    borderRadius: '50px',
-                                    marginLeft: '6px',
-                                    border: `1px solid ${colors.lightTeal}`,
-                                }}
-                            >
-                                Manager Workspace
-                            </span>
                         </div>
                         <p
                             style={{
